@@ -1,0 +1,7 @@
+safe: true
+lsi: false
+markdown: rdiscount
+pygments: true
+permalink: /:title
+url: http://sambillingham.github.com/lucid
+baseurl: /lucid

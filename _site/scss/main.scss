@@ -1,0 +1,62 @@
+/* # Reset & Basics
+================================================== */
+
+@import 'reset';
+
+/* # Magic
+================================================== */
+
+@import 'magic/mess';
+@import 'magic/color';
+@import 'magic/mixins';
+
+/* # Sensibilities
+================================================== */
+
+$site-width: 1280px;
+
+* { @include prefixer(box-sizing, border-box, webkit moz o spec); }
+
+// Objects
+.wrap {
+	max-width: $site-width;
+	margin: 0 auto;
+}
+
+/*
+
+a {
+	text-decoration: none;
+	color: $brand;
+	padding: 0 0 5px 0;
+
+	&:visited { color: $brand; }
+
+	&:hover {
+		color: $link-hover;
+		border-bottom: 1px solid lighten($brand, 10%);
+	}
+
+	&:active {
+		color: $link-color;
+		border-bottom: 1px solid lighten($brand, 10%);
+	}
+}
+
+*/
+
+/* # Primary Styles
+================================================== */
+
+@import 'header';
+
+body, html {}
+
+.main {}
+
+@import 'footer';
+
+/* # Single article styles
+================================================== */
+
+@import 'article';

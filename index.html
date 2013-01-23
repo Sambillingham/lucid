@@ -1,1 +1,29 @@
-Stick a blog here, yo.
+---
+layout: layout
+---
+
+<ul>
+
+	{% for post in site.posts %}
+
+		<article class="post">
+
+			<header>
+
+				<h2><a class="title" href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h2>
+
+				<span class="date">{{ post.date | date: "%d %B %Y" }}</span>
+
+			</header>
+
+			<section class="words">
+
+				{{ post.content }}
+
+			</section>
+
+		</article>
+
+	{% endfor %}
+
+</ul>

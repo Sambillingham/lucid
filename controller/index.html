@@ -1,0 +1,78 @@
+<html>
+<head>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+
+    $(function() {
+
+    var socket = io.connect('192.168.0.20');
+
+            var accellDataX = 0,
+                accellDataY = 0,
+                accellDataZ = 0,
+                accellDataXYZ = 0;
+            
+               // $("#data1").html(gpsnum1);
+
+ 
+            socket.on('connect', function () {
+                    $('#welcome').html("Sockets Bitches");
+
+                // socket.on('screenDisplay', function(data) {
+                    //
+               // });
+
+
+                socket.on('disconnect', function() {
+                    $('#welcome').html('Disconnected');
+                });
+            });
+
+
+
+    // Do we have accelerometer support?
+    if (window.DeviceMotionEvent !== undefined) {
+
+        // Gyrate
+        window.ondeviceorientation = function(event) {
+
+            // Get compass data
+            var deviceDirection = event.alpha,
+                deviceRollY     = event.beta,
+                deviceRollX     = event.gamma;
+            
+            socket.emit('rollX' , Math.floor(deviceRollX));
+            socket.emit('rollY' , Math.floor(deviceRollY));
+            socket.emit('direction' , Math.floor(deviceDirection));
+
+
+        }
+
+    } else {
+
+        // We don't have accelerometer support
+        $("#welcome").append("<h1>No gyro, Bro. Try again in Mobile Safari.</h1>");
+
+    }
+
+     
+
+});
+    
+
+    
+
+
+    </script>
+</head>
+<body>
+<h1 id="welcome"></h1>
+
+<p class=".acc-x"></p>
+<p class=".acc-y"></p>
+<p class=".acc-z"></p>
+
+<button  type="submit" id="update"> Go</button>
+</body>
+</html>

@@ -11,21 +11,34 @@
             var accellDataX = 0,
                 accellDataY = 0,
                 accellDataZ = 0,
-                accellDataXYZ = 0;
+                accellDataXYZ = 0,
+                myid = 0,
+                iamplayer1 = false;
             
                // $("#data1").html(gpsnum1);
 
  
             socket.on('connect', function () {
                     $('#welcome').html("Sockets Bitches");
+                     
+                 socket.on('playerID', function(data) {
+                     $("#welcome").append('  My ID: ' + data);
+                     myid = data;
+                 });
 
-                // socket.on('screenDisplay', function(data) {
-                    //
-               // });
-
+                 socket.on('youArePlayer1', function(){
+                    $('#welcome').html('Player 1');
+                    iamplayer1 = true;
+                 });
+                 socket.on('youArePlayer2', function(){
+                    $('#welcome').html('Player 2');
+                    iamplayer1 = false;
+                 });
 
                 socket.on('disconnect', function() {
                     $('#welcome').html('Disconnected');
+                     socket.emit('idis' , myid );
+                     
                 });
             });
 
@@ -42,10 +55,11 @@
                 deviceRollY     = event.beta,
                 deviceRollX     = event.gamma;
             
+            if (iamplayer1 === true){
             socket.emit('rollX' , Math.floor(deviceRollX));
             socket.emit('rollY' , Math.floor(deviceRollY));
             socket.emit('direction' , Math.floor(deviceDirection));
-
+            }
 
         }
 
@@ -55,6 +69,17 @@
         $("#welcome").append("<h1>No gyro, Bro. Try again in Mobile Safari.</h1>");
 
     }
+                $("#player1click").click(function() {
+
+                   socket.emit('iamplayer1' , myid);
+                   
+                 });
+
+                $("#player2click").click(function() {
+
+                   socket.emit('iamplayer2' , myid);
+                   
+                 });
 
      
 
@@ -69,9 +94,9 @@
 <body>
 <h1 id="welcome"></h1>
 
-<p class=".acc-x"></p>
+<p id="myID"></p>
+<span id="player1click" style="background-color:red; display: block;  height: 100px; width:  100px; text-align: center;">Player 1</span>
+<span id="player2click"  style="background-color:blue; display: block;  height: 100px; width:  100px; text-align: center;">Player 2</span>
 
-
-<button  type="submit" id="update"> Go</button>
 </body>
 </html>

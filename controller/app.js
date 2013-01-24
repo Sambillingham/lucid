@@ -1,15 +1,14 @@
-var app = require('http').createServer(handler)
-  , io = require('socket.io').listen(app)
-  , fs = require('fs')
-  , osc = require('node-osc');
+var app = require('http').createServer(handler),
+    io = require('socket.io').listen(app),
+    fs = require('fs'),
+    osc = require('node-osc');
 
-var left = 0,
-    right = 0,
-    forward = 0,
-    back = 0,
-    aRandomVar = 0;
-    XRoll = 0;
-    YRoll = 0;
+var XRoll = 0,
+    YRoll = 0,
+    player1 = 0,
+    player2 = 0,
+    player1Taken = false,
+    player2Taken = false;
 
 var client = new osc.Client('192.168.0.5', 3333);
 
@@ -30,6 +29,23 @@ function handler (req, res) {
 
 
 io.sockets.on('connection', function (socket) {
+    console.log('player connected');
+    socket.emit('playerID', socket.id);
+    
+
+    
+
+    socket.on('iamplayer1', function(data) {
+      player1 = data;
+      console.log("Player1: " + player1 + ":     :" + "Player2: " + player2);
+      socket.emit('youArePlayer1' );
+
+    });
+    socket.on('iamplayer2', function(data) {
+      player2 = data;
+      console.log("Player1: " + player1 + ":     :" + "Player2: " + player2);
+      socket.emit('youArePlayer2' );
+    });
 
     socket.on('rollX', function (data) {
         if (data > 10 || data < -10){
@@ -39,16 +55,7 @@ io.sockets.on('connection', function (socket) {
         XRoll = 0;
         sendOSC();
       }
-        //if (data > -70 && data < 0) {
-        //    left = (Math.abs(2*(Math.round(data/10))));
-        //    right = 0;
-       //     sendOSC();
-      //  } 
-      //  if (data < 70 && data > 0 ) {
-       //   right = (Math.abs(2*(Math.round(data/10))));
-       //   left = 0;
-       //   sendOSC();
-      //     }
+        
         
     });
 
@@ -60,19 +67,6 @@ io.sockets.on('connection', function (socket) {
         YRoll = 0;
         sendOSC();
       }
-       // if (data > -70 && data < 0) {
-       //   forward = (Math.abs(2*(Math.round(data/10))));
-       //   back = 0;
-       //   sendOSC();
-         
-       // } 
-       // if (data < 70 && data > 0 ) {
-        //  back = (Math.abs(2*(Math.round(data/10))));
-        //  forward = 0;
-        ///  sendOSC();
-         
-      //  }
-
     });
 
 
@@ -90,7 +84,6 @@ io.sockets.on('connection', function (socket) {
 function sendOSC(){
   client.send('/move', XRoll, YRoll);
   console.log('X and Y Axis Data', XRoll + ":     :" + YRoll );
-//console.log('direction data: ', left + ":  : " + right + ":  : " + forward + ":  : " + back);
 }
 
 

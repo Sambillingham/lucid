@@ -8,8 +8,8 @@ var left = 0,
     forward = 0,
     back = 0,
     aRandomVar = 0;
-  //  XRoll = 0;
-   // YRol = 0;
+    XRoll = 0;
+    YRoll = 0;
 
 var client = new osc.Client('192.168.0.5', 3333);
 
@@ -32,41 +32,46 @@ function handler (req, res) {
 io.sockets.on('connection', function (socket) {
 
     socket.on('rollX', function (data) {
-
-        if (data > -70 && data < 0) {
-            left = (Math.abs(2*(Math.round(data/10))));
-            right = 0;
-            sendOSC();
-            
-           // client.send('/left', (Math.abs(2*(Math.round(data/10)))));
-           // console.log('sending OSC LEFT: ', (Math.abs(2*(Math.round(data/10)))));
-        } 
-        if (data < 70 && data > 0 ) {
-          right = (Math.abs(2*(Math.round(data/10))));
-          left = 0;
-          sendOSC();
-          //  client.send('/right', (Math.abs(2*(Math.round(data/10)))));
-         //   console.log('sending OSC RIGHT: ', (Math.abs(2*(Math.round(data/10)))));
-        }
-        //console.log(' Device Roll X: ', data);
+        if (data > 10 || data < -10){
+        XRoll = data;
+        sendOSC();
+      } else {
+        XRoll = 0;
+        sendOSC();
+      }
+        //if (data > -70 && data < 0) {
+        //    left = (Math.abs(2*(Math.round(data/10))));
+        //    right = 0;
+       //     sendOSC();
+      //  } 
+      //  if (data < 70 && data > 0 ) {
+       //   right = (Math.abs(2*(Math.round(data/10))));
+       //   left = 0;
+       //   sendOSC();
+      //     }
+        
     });
 
     socket.on('rollY', function (data) {
-
-        if (data > -70 && data < 0) {
-          forward = (Math.abs(2*(Math.round(data/10))));
-          back = 0;
-          sendOSC();
-         //   client.send('/forward', (Math.abs(2*(Math.round(data/10)))));
-         //   console.log('sending OSC FORWARD: ', (Math.abs(2*(Math.round(data/10)))));
-        } 
-        if (data < 70 && data > 0 ) {
-          back = (Math.abs(2*(Math.round(data/10))));
-          forward = 0;
-          sendOSC();
-         //   client.send('/back', (Math.abs(2*(Math.round(data/10)))));
-          //  console.log('sending OSC BACK: ', (Math.abs(2*(Math.round(data/10)))));
-        }
+      if (data > 10 || data < -10){
+      YRoll = data;
+        sendOSC();
+      } else {
+        YRoll = 0;
+        sendOSC();
+      }
+       // if (data > -70 && data < 0) {
+       //   forward = (Math.abs(2*(Math.round(data/10))));
+       //   back = 0;
+       //   sendOSC();
+         
+       // } 
+       // if (data < 70 && data > 0 ) {
+        //  back = (Math.abs(2*(Math.round(data/10))));
+        //  forward = 0;
+        ///  sendOSC();
+         
+      //  }
 
     });
 
@@ -83,8 +88,9 @@ io.sockets.on('connection', function (socket) {
 });
 
 function sendOSC(){
-  client.send('/move', left, right, forward, back );
-console.log('direction data: ', left + ":  : " + right + ":  : " + forward + ":  : " + back);
+  client.send('/move', XRoll, YRoll);
+  console.log('X and Y Axis Data', XRoll + ":     :" + YRoll );
+//console.log('direction data: ', left + ":  : " + right + ":  : " + forward + ":  : " + back);
 }
 
 

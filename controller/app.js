@@ -9,6 +9,8 @@ var left = false,
     backward = false,
     aRandomVar = 0;
 
+var client = new osc.Client('192.168.0.5', 3333);
+
 app.listen(8080);
 
 function handler (req, res) {
@@ -24,24 +26,34 @@ function handler (req, res) {
   });
 }
 
+
 io.sockets.on('connection', function (socket) {
 
     socket.on('rollX', function (data) {
 
         if (data > -70 && data < 0) {
-            console.log('left' + (2*(Math.round(data/10))));
+            //console.log('left: ' + (Math.abs(2*(Math.round(data/10)))));
+
+            
+            client.send('/left', (Math.abs(2*(Math.round(data/10)))));
+            console.log('sending OSC LEFT: ', (Math.abs(2*(Math.round(data/10)))));
         } 
         if (data < 70 && data > 0 ) {
-            console.log('right' + (2*(Math.round(data/10))));
+            client.send('/right', (Math.abs(2*(Math.round(data/10)))));
+            console.log('sending OSC RIGHT: ', (Math.abs(2*(Math.round(data/10)))));
         }
         //console.log(' Device Roll X: ', data);
     });
 
     socket.on('rollY', function (data) {
-        if (data < 0){
-            console.log('forward');
-        } else {
-            console.log('back');
+
+        if (data > -70 && data < 0) {
+            client.send('/forward', (Math.abs(2*(Math.round(data/10)))));
+            console.log('sending OSC FORWARD: ', (Math.abs(2*(Math.round(data/10)))));
+        } 
+        if (data < 70 && data > 0 ) {
+            client.send('/back', (Math.abs(2*(Math.round(data/10)))));
+            console.log('sending OSC BACK: ', (Math.abs(2*(Math.round(data/10)))));
         }
     });
 
@@ -56,11 +68,8 @@ io.sockets.on('connection', function (socket) {
 
 });
 
-var client = new osc.Client('127.0.0.1', 3333);
-if ( left == true){
-    client.send('/left', 200);
 
-}
+
 
 client.send('/right', 200);
 

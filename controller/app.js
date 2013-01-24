@@ -8,7 +8,10 @@ var XRoll = 0,
     player1 = 0,
     player2 = 0,
     player1Taken = false,
-    player2Taken = false;
+    player2Taken = false,
+    lookX = 0,
+    lookY = 0,
+    lookDirection = 0;
 
 var client = new osc.Client('192.168.0.5', 3333);
 
@@ -47,45 +50,70 @@ io.sockets.on('connection', function (socket) {
       socket.emit('youArePlayer2' );
     });
 
-    socket.on('rollX', function (data) {
+    socket.on('moveRollX', function (data) {
         if (data > 10 || data < -10){
         XRoll = data;
-        sendOSC();
+        sendOSCMove();
       } else {
         XRoll = 0;
-        sendOSC();
+        sendOSCMove();
       }
         
         
     });
 
-    socket.on('rollY', function (data) {
+    socket.on('moveRollY', function (data) {
       if (data > 10 || data < -10){
       YRoll = data;
-        sendOSC();
+        sendOSCMove();
       } else {
         YRoll = 0;
-        sendOSC();
+        sendOSCMove();
       }
     });
 
+    //Sockets for look actions
 
-    socket.on('direction', function (data) {
-       // console.log(' Device Direction : ', data);
+    socket.on('lookRollX', function (data) {
+
+        lookX = data;
+        sendOSCLook();
+
+        
     });
 
+    socket.on('lookRollY', function (data) {
+      
+      lookY = data;
+      sendOSCLook();
+      
+    });
 
-   // socket.emit('screenDisplay', aRandomVar) {
+    socket.on('lookDirection', function (data) {
+      
+      lookDirection = data;
+      sendOSCLook();
+      
+    });
 
+    // END look actions
+
+   // socket.on('direction', function (data) {
+       // console.log(' Device Direction : ', data);
    // });
+
+
 
 });
 
-function sendOSC(){
+function sendOSCMove(){
   client.send('/move', XRoll, YRoll);
-  console.log('X and Y Axis Data', XRoll + ":     :" + YRoll );
+  console.log('X and Y Axis Data',  "     X :" + XRoll + "     Y :" + YRoll );
 }
-
+function sendOSCLook(){
+  client.send('/look', lookX, lookY, lookDirection);
+  console.log('Looking Data', "     X :" + lookX + "     Y :" + lookY + ":     D :" + lookDirection );
+}
 
 
 

@@ -1,6 +1,7 @@
 <html>
 <head>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script> 
     <script src="/socket.io/socket.io.js"></script>
     <script>
 
@@ -13,7 +14,8 @@
                 accellDataZ = 0,
                 accellDataXYZ = 0,
                 myid = 0,
-                iamplayer1 = false;
+                iamplayer1 = false,
+                iamplayer2 = false;
             
                // $("#data1").html(gpsnum1);
 
@@ -29,9 +31,11 @@
                  socket.on('youArePlayer1', function(){
                     $('#welcome').html('Player 1');
                     iamplayer1 = true;
+                    iamplayer2 = false;
                  });
                  socket.on('youArePlayer2', function(){
                     $('#welcome').html('Player 2');
+                    iamplayer2 = true;
                     iamplayer1 = false;
                  });
 
@@ -54,11 +58,18 @@
             var deviceDirection = event.alpha,
                 deviceRollY     = event.beta,
                 deviceRollX     = event.gamma;
+
+            console.log('HERE' + "     P1: " + iamplayer1 + "    P2: " + iamplayer2  );
             
             if (iamplayer1 === true){
-            socket.emit('rollX' , Math.floor(deviceRollX));
-            socket.emit('rollY' , Math.floor(deviceRollY));
-            socket.emit('direction' , Math.floor(deviceDirection));
+            socket.emit('moveRollX' , Math.floor(deviceRollX));
+            socket.emit('moveRollY' , Math.floor(deviceRollY));
+            }
+
+            if (iamplayer2 === true){
+            socket.emit('lookRollX' , Math.floor(deviceRollX));
+            socket.emit('lookRollY' , Math.floor(deviceRollY));
+            socket.emit('lookDirection' , Math.floor(deviceDirection));
             }
 
         }
@@ -71,7 +82,7 @@
     }
                 $("#player1click").click(function() {
 
-                   socket.emit('iamplayer1' , myid);
+                    socket.emit('iamplayer1' , myid);
                    
                  });
 
@@ -95,8 +106,8 @@
 <h1 id="welcome"></h1>
 
 <p id="myID"></p>
-<span id="player1click" style="background-color:red; display: block;  height: 100px; width:  100px; text-align: center;">Player 1</span>
-<span id="player2click"  style="background-color:blue; display: block;  height: 100px; width:  100px; text-align: center;">Player 2</span>
+<span id="player1click" style="background-color:red; display: block;  height: 100px; width:  100%; text-align: center;">Player 1</span>
+<span id="player2click"  style="background-color:blue; display: block;  height: 100px; width:  100&; text-align: center;">Player 2</span>
 
 </body>
 </html>

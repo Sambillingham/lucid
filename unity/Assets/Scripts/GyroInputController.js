@@ -1,13 +1,15 @@
 private var motor : CharacterMotor;
+public var sight : GameObject;
 
 // Use this for initialization
 function Awake () {
 	motor = GetComponent(CharacterMotor);
+	sight = GameObject.Find("Player/Sight");
 }
 
 // Update is called once per frame
 public function UpdatePlayerPosition (directionVector:Vector3) :void {
-	
+
 	if (directionVector != Vector3.zero) {
 		// Get the length of the directon vector and then normalize it
 		// Dividing by the length is cheaper than normalizing when we already have the length anyway
@@ -30,6 +32,10 @@ public function UpdatePlayerPosition (directionVector:Vector3) :void {
 
 }
 
-public function RotatePlayer (direction:float) :void {
-	gameObject.transform.Rotate(0,direction,0);
+public function RotatePlayer (amount:float) :void {
+	gameObject.transform.Rotate(0,amount,0);
+}
+
+public function AdjustSight (rotationVector:Vector3) :void {
+	sight.transform.localEulerAngles = rotationVector;
 }

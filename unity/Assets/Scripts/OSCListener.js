@@ -6,6 +6,7 @@ private var oscHandler    : Osc;
 
 private var direction     : Vector3;
 private var rotation      : int;
+private var lookAt        : Vector3;
 private var updatingFeet  : boolean;
 private var updatingHead  : boolean;
 public  var multiplier    : int = 10;
@@ -23,26 +24,25 @@ public function Start ()
 
 function Update () {	
 	if (updatingFeet) {
-		PassOnDirection(direction, rotation);
+		PassOnMovement(direction, rotation);
 		updatingFeet = false;
 	}
 	if (updatingHead) {
-		PassOnHeadRotation(direction);
+		PassOnHeadOrientation(lookAt);
 		updatingHead = false;
 	}
 }	
 
 public function updateFeet (oscMessage : OscMessage) : void
 {	
-	Debug.Log("HORIZONTAL: " + oscMessage.Values[0] + ", VERTICAL: " + oscMessage.Values[1]);
-	//var horizontal:int = oscMessage.Values[0];
-	rotation = oscMessage.Values[0];
+	Debug.Log("ROTATION: " + oscMessage.Values[0] + ", VERTICAL: " + oscMessage.Values[1]);
+	rotation = oscMessage.Values[0] / (multiplier);
 	var vertical:int   = oscMessage.Values[1] * -multiplier;
 	direction = new Vector3(0, 0, vertical);
-	updatingFeet = true;
+	updatingFeet = updatingHead = true;
 } 
 
-private function PassOnDirection (dir:Vector3, rot:int) : void 
+private function PassOnMovement (dir:Vector3, rot:int) : void 
 {
 	gameObject.SendMessage("UpdatePlayerPosition", dir);
 	gameObject.SendMessage("RotatePlayer", rot);
@@ -50,15 +50,16 @@ private function PassOnDirection (dir:Vector3, rot:int) : void
 
 public function updateHead (oscMessage : OscMessage) : void
 {	
-	Debug.Log("HORIZONTAL: " + oscMessage.Values[0] + ", VERTICAL: " + oscMessage.Values[1]);
-	var horizontal:int = oscMessage.Values[0];
-	var vertical:int   = oscMessage.Values[1] * multiplier;
-	direction = new Vector3(horizontal, 0, vertical);
+	// Debug.Log("X: " + oscMessage.Values[0] + ", Y: " + oscMessage.Values[1] + ", Z: " + oscMessage.Values[2]);
+	var z:float = -oscMessage.Values[0];
+	var x:float = -oscMessage.Values[1];
+	var y:float = -oscMessage.Values[2];
+	lookAt = new Vector3(x,y,z);
 	updatingHead = true;
 } 
 
-private function PassOnHeadRotation (dir:Vector3) : void 
+private function PassOnHeadOrientation (dir:Vector3) : void 
 {
-	gameObject.SendMessage("UpdateHeadRotation", dir / multiplier);
+	gameObject.SendMessage("AdjustSight", lookAt);
 }
 

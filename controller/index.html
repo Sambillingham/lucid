@@ -3,6 +3,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script> 
     <script src="/socket.io/socket.io.js"></script>
+
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/main.css">
+
     <script>
 
     $(function() {
@@ -21,10 +25,10 @@
 
  
             socket.on('connect', function () {
-                    $('#welcome').html("Sockets Bitches");
+                    $('#welcome').append("Sockets Bitches").removeClass("disconnected").addClass("connected");
                      
                  socket.on('playerID', function(data) {
-                     $("#welcome").append('  My ID: ' + data);
+                    // $("#welcome").append('  My ID: ' + data);
                      myid = data;
                  });
 
@@ -40,7 +44,7 @@
                  });
 
                 socket.on('disconnect', function() {
-                    $('#welcome').html('Disconnected');
+                    $('#welcome').html('Disconnected').removeClass("connected").addClass("disconnected");
                      socket.emit('idis' , myid );
                      
                 });
@@ -102,12 +106,14 @@
 
     </script>
 </head>
-<body>
-<h1 id="welcome"></h1>
+    <body>
+    
+        <div class="container">
+            <h1 id="welcome"></h1>
 
-<p id="myID"></p>
-<span id="player1click" style="background-color:red; display: block;  height: 100px; width:  100%; text-align: center;">Player 1</span>
-<span id="player2click"  style="background-color:blue; display: block;  height: 100px; width:  100&; text-align: center;">Player 2</span>
-
-</body>
+        <p id="myID"></p>
+        <span id="player1click" class="move" > <p> Move </p></span>
+        <span id="player2click" class="look" > <p> Look </p></span>
+        </div>
+    </body>
 </html>

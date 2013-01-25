@@ -36,8 +36,8 @@ function Update () {
 public function updateFeet (oscMessage : OscMessage) : void
 {	
 	Debug.Log("ROTATION: " + oscMessage.Values[0] + ", VERTICAL: " + oscMessage.Values[1]);
-	rotation = oscMessage.Values[0] / (multiplier);
-	var vertical:int   = oscMessage.Values[1] * -multiplier;
+	rotation = oscMessage.Values[0];// / (multiplier);
+	var vertical:int = oscMessage.Values[1] * -multiplier;
 	direction = new Vector3(0, 0, vertical);
 	updatingFeet = updatingHead = true;
 } 
@@ -45,15 +45,15 @@ public function updateFeet (oscMessage : OscMessage) : void
 private function PassOnMovement (dir:Vector3, rot:int) : void 
 {
 	gameObject.SendMessage("UpdatePlayerPosition", dir);
-	gameObject.SendMessage("RotatePlayer", rot);
+	gameObject.SendMessage("AdjustPlayerRotation", rot);
 }
 
 public function updateHead (oscMessage : OscMessage) : void
 {	
-	// Debug.Log("X: " + oscMessage.Values[0] + ", Y: " + oscMessage.Values[1] + ", Z: " + oscMessage.Values[2]);
+	Debug.Log("Z: " + oscMessage.Values[0] + ", X: " + oscMessage.Values[1] + ", Y: " + oscMessage.Values[2]);
 	var z:float = -oscMessage.Values[0];
 	var x:float = -oscMessage.Values[1];
-	var y:float = -oscMessage.Values[2];
+	var y:float = -(oscMessage.Values[2]);
 	lookAt = new Vector3(x,y,z);
 	updatingHead = true;
 } 

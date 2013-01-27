@@ -170,6 +170,7 @@ html {
     font-size: 7px;
     font-size: 0.7rem; }
   .post .words {
+    text-align: left;
     width: 60%;
     margin: 0 auto;
     color: #100f0e;

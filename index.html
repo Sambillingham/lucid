@@ -4,26 +4,30 @@ layout: layout
 
 <ul>
 
-	{% for post in site.posts %}
+	{% if site.posts %}
 
-		<article class="post">
+		{% for post in site.posts %}
 
-			<header>
+			<article class="post">
 
-				<h2><a class="title" href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h2>
+				<header>
 
-				<span class="date">{{ post.date | date: "%d %B %Y" }}</span>
+					<h2><a class="title" href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h2>
 
-			</header>
+					<span class="date">{{ post.date | date: "%d %B %Y" }}</span>
 
-			<section class="words">
+				</header>
 
-				{{ post.content }}
+				<section class="words">
 
-			</section>
+					{{ post.content }}
 
-		</article>
+				</section>
 
-	{% endfor %}
+			</article>
+
+		{% endfor %}
+
+	{% endif %}
 
 </ul>

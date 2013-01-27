@@ -7,8 +7,19 @@
   font-size: $sizeValue + rem;
 }
 
-// Prefixer
+// Retinafy
+@mixin retinafy($file, $type, $width, $height) {
+  background-image: url("../img/" + $file + '.' + $type);
 
+  @media (-webkit-min-device-pixel-ratio: 2), (-moz-min-device-pixel-ratio: 2) {
+    & {
+      background-image: url("../img/" + $file + '@2x.' + $type);
+      -webkit-background-size: $width $height;
+    }
+  }
+}
+
+// Prefixer
 @mixin prefixer ($property, $value, $prefixes) {
 
 	@each $prefix in $prefixes {

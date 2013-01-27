@@ -180,3 +180,8 @@ html {
 
 /* # Single article styles
 ================================================== */
+/* # Media Queries
+================================================== */
+@media only screen and (max-width: 800px) {
+  .post .words {
+    width: 90%; } }

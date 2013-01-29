@@ -1,119 +1,34 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script> 
-    <script src="/socket.io/socket.io.js"></script>
-
-    <link rel="stylesheet" href="css/base.css">
-    <link rel="stylesheet" href="css/main.css">
-
-    <script>
-
-    $(function() {
-
-    var socket = io.connect('192.168.0.20');
-
-            var accellDataX = 0,
-                accellDataY = 0,
-                accellDataZ = 0,
-                accellDataXYZ = 0,
-                myid = 0,
-                iamplayer1 = false,
-                iamplayer2 = false;
-            
-               // $("#data1").html(gpsnum1);
-
- 
-            socket.on('connect', function () {
-                    $('#welcome').append("Sockets Bitches").removeClass("disconnected").addClass("connected");
-                     
-                 socket.on('playerID', function(data) {
-                    // $("#welcome").append('  My ID: ' + data);
-                     myid = data;
-                 });
-
-                 socket.on('youArePlayer1', function(){
-                    $('#welcome').html('Player 1');
-                    iamplayer1 = true;
-                    iamplayer2 = false;
-                 });
-                 socket.on('youArePlayer2', function(){
-                    $('#welcome').html('Player 2');
-                    iamplayer2 = true;
-                    iamplayer1 = false;
-                 });
-
-                socket.on('disconnect', function() {
-                    $('#welcome').html('Disconnected').removeClass("connected").addClass("disconnected");
-                     socket.emit('idis' , myid );
-                     
-                });
-            });
-
-
-
-    // Do we have accelerometer support?
-    if (window.DeviceMotionEvent !== undefined) {
-
-        // Gyrate
-        window.ondeviceorientation = function(event) {
-
-            // Get compass data
-            var deviceDirection = event.alpha,
-                deviceRollY     = event.beta,
-                deviceRollX     = event.gamma;
-
-            console.log('HERE' + "     P1: " + iamplayer1 + "    P2: " + iamplayer2  );
-            
-            if (iamplayer1 === true){
-            socket.emit('moveRollX' , Math.floor(deviceRollX));
-            socket.emit('moveRollY' , Math.floor(deviceRollY));
-            }
-
-            if (iamplayer2 === true){
-            socket.emit('lookRollX' , Math.floor(deviceRollX));
-            socket.emit('lookRollY' , Math.floor(deviceRollY));
-            socket.emit('lookDirection' , Math.floor(deviceDirection));
-            }
-
-        }
-
-    } else {
-
-        // We don't have accelerometer support
-        $("#welcome").append("<h1>No gyro, Bro. Try again in Mobile Safari.</h1>");
-
-    }
-                $("#player1click").click(function() {
-
-                    socket.emit('iamplayer1' , myid);
-                   
-                 });
-
-                $("#player2click").click(function() {
-
-                   socket.emit('iamplayer2' , myid);
-                   
-                 });
-
-     
-
-});
     
 
-    
-
-
-    </script>
+  
 </head>
     <body>
     
         <div class="container">
-            <h1 id="welcome"></h1>
 
-        <p id="myID"></p>
-        <span id="player1click" class="move" > <p> Move </p></span>
-        <span id="player2click" class="look" > <p> Look </p></span>
+        <h1 id="welcome"></h1>
+
+        <span id="moveClick" class="move"> 
+            <p> Move </p>
+        </span>
+
+        <span id="lookClick" class="look"> 
+            <p> Look </p>
+        </span>
+
         </div>
+
+
+            <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script> 
+            <script src="/socket.io/socket.io.js"></script>
+            <script src="js/main.js"></script>
+
+         
+            <link rel="stylesheet" href="css/main.css">
+
+
     </body>
 </html>

@@ -1,129 +1,106 @@
-var express = require('express'),
-    app = express(),
-    server = require('http').createServer(app),
-    io = require('socket.io').listen(server),
-    osc = require('node-osc');
+    var express = require('express'),
+        app = express(),
+        server = require('http').createServer(app),
+        io = require('socket.io').listen(server, { log: false }),
+        osc = require('node-osc');
 
-var XRoll = 0,
-    YRoll = 0,
-    player1 = 0,
-    player2 = 0,
-    player1Taken = false,
-    player2Taken = false,
-    lookZ = 0,
-    lookX = 0,
-    lookY = 0;
+    var who = { move: false, look: false },
+        accellMove = { x: 0, y: 0, d: 0 };
+        accellLook = { x: 0, y: 0, d: 0 };
 
-var client = new osc.Client('192.168.0.5', 3333);
+    var client = new osc.Client('192.168.0.5', 3333);
+
+    server.listen(8080);
 
 
+    app.configure(function() {
 
-server.listen(8080);
-
-app.configure(function() {
-
-  app.use(express.static(__dirname + '/public'));
-
-});
-
-app.get('/', function (req, res) {
-
-  switch(req.url) {
-    case '/':
-    case '/index.html':
-      res.sendfile(__dirname + '/index.html');
-    break
-    
-
-  }
-});
-
-
-io.sockets.on('connection', function (socket) {
-    console.log('player connected');
-    socket.emit('playerID', socket.id);
-    
-
-    //Sockets for Player Selection
-
-    socket.on('iamplayer1', function(data) {
-
-      player1 = data;
-      console.log("Player1: " + player1 + ":     :" + "Player2: " + player2);
-      socket.emit('youArePlayer1' );
+            app.use(express.static(__dirname + '/public'));
 
     });
 
-    socket.on('iamplayer2', function(data) {
+    app.get('/', function (req, res) {
 
-      player2 = data;
-      console.log("Player1: " + player1 + ":     :" + "Player2: " + player2);
-      socket.emit('youArePlayer2' );
+            res.sendfile(__dirname + '/index.html');
 
     });
-    // END Player Selection
 
-    // Sockets for Move Actions
 
-    socket.on('moveRollX', function (data) {
-        
-        XRoll = data;
-        sendOSCMove();
-        
-    });
 
-    socket.on('moveRollY', function (data) {
-
-      if (data > 10 || data < -10) {
-
-        YRoll = data;
-        sendOSCMove();
-
-      } else {
-
-        YRoll = 0;
-        sendOSCMove();
-
-      }
-    });
-    // END Move actions
-
-    // Sockets for look actions
-
-    socket.on('lookRollX', function (data) {
-
-      lookZ = data;
-      sendOSCLook();
+    io.sockets.on('connection', function (socket) {
 
         
+        socket.on('player', function (data) {
+
+                if ( data.move === true) {
+
+                        who.move = true;
+                        who.look = false;
+
+                        socket.emit('selectedPlayer', who );
+
+                };
+
+                if ( data.look === true) {
+
+                        who.move = false;
+                        who.look = true;
+
+                        socket.emit('selectedPlayer', who );
+
+                };
+
+
+        });
+     
+      
+        socket.on('sendMoveAccellValues', function (data) {
+
+                accellMove = data;
+
+                sendOSCMove();
+
+        });
+        
+
+        socket.on('sendLookAccellValues', function (data) {
+
+                accellLook = data;
+
+                sendOSCLook();
+
+        });
+
+
+
+
     });
 
-    socket.on('lookRollY', function (data) {
-      
-      lookX = data;
-      sendOSCLook();
-      
-    });
+    function sendOSCLook() {
 
-    socket.on('lookDirection', function (data) {
-      
-      lookY = data;
-      sendOSCLook();
-      
-    });
+            client.send('/look', accellLook.d, accellLook.x, accellLook.y );
 
-    // END look actions
+            console.log('look', "  Z:" + accellLook.d + " X :" + accellLook.x  + " Y :" + accellLook.y);
 
-});
+            
 
-function sendOSCMove(){
-  client.send('/move', XRoll, YRoll);
-  console.log('X and Y Axis Data',  "     X :" + XRoll + "     Y :" + YRoll );
-}
-function sendOSCLook(){
-  client.send('/look', lookZ, lookX, lookY);
-  console.log('Looking Data', "     Z :" + lookZ + "     X :" + lookX + ":     Y :" + lookY );
-}
+    }
 
 
+    function sendOSCMove() {
+
+            if ( accellMove.y >  10 || accellMove.y < -10 ) {
+
+                    accellMove.y = accellMove.y;
+
+            } else {
+
+                    accellMove.y = 0;
+            }
+
+            client.send('/move', accellMove.x, accellMove.y);
+
+            console.log('Move',  " X :" + accellMove.x + " Y :" + accellMove.y );
+
+    }
 

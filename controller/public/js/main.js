@@ -2,14 +2,8 @@ $(function() {
 
     var socket = io.connect('http://192.168.0.20');
 
-            var accellDataX = 0,
-                accellDataY = 0,
-                accellDataZ = 0,
-                accellDataXYZ = 0,
-                iamplayer1 = false,
-                iamplayer2 = false,
-                whoAreYou = { move: false, look: false},
-                accellValues = { x: 0, y: 0, d: 0};
+            var whoAreYou = { move: false, look: false },
+                accellValues = { x: 0, y: 0, d: 0 };
 
  
             socket.on('connect', function () {
@@ -50,9 +44,6 @@ $(function() {
                 // Gyrate
                 window.ondeviceorientation = function(event) {
 
-
-
-                    // Get compass data
                     var deviceDirection = Math.floor(event.alpha),
                         deviceRollY     = Math.floor(event.beta),
                         deviceRollX     = Math.floor(event.gamma);
@@ -78,7 +69,6 @@ $(function() {
 
                 }
 
-                
 
             } else {
 

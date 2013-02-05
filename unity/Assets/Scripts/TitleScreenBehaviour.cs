@@ -3,40 +3,31 @@ using System.Collections;
 
 public class TitleScreenBehaviour : MonoBehaviour {
 
-	public int   attemptNo;
-	public int   currentRoom;
-	public int[] roomSequence;
+	float localY;
+	float direction;
 
 	// Use this for initialization
 	void Start () {
-		attemptNo = PlayerPrefs.GetInt("Runs");
-		roomSequence = new int[9] {1,2,3,4,5,6,7,8,9};
-		Debug.Log("Welcome back, Traveller.");
+		localY = transform.position.y;
+		direction = -0.01f;
+		transform.Translate(0,-1.2f,0, Space.Self);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+		if (Input.GetKeyUp("space"))
+			InitGame();
+
+		if (transform.position.y > -0.6f && transform.position.y < 1f)
+			transform.Translate(0,direction,0, Space.Self);
+		else 
+			direction *= -1f;
+			transform.Translate(0,direction * 2,0, Space.Self);
 	}
 
-	void OnGUI () {
-		if(GUI.Button(new Rect((Screen.width / 2) - 50, Screen.height - 70,100,20), "Enter Dream")) {
-			attemptNo++;
-			PlayerPrefs.SetInt("Runs", attemptNo);
-			Debug.Log("This is attempt #" + attemptNo);
-			GoToNextLevel(roomSequence[0]);
-		}
-	}
-
-	void GoToNextLevel (int id) {
-		Debug.Log("Loading level: " + id);
-		currentRoom++;
-		// store currentRoom and roomSequence somewhere?
-		Application.LoadLevel(currentRoom);
-	}
-
-	int GetNextLevelID () {
-		return roomSequence[currentRoom + 1];
+	void InitGame () {
+		Debug.Log("Good luck!");
+		Application.LoadLevel("Lobby");
 	}
 
 }

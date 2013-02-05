@@ -41,42 +41,6 @@ html {
 	text-align: center;
 }
 
-.post {
-	margin: 0 0 65px 0;
-
-	h2 {
-		display: inline-block;
-		font-family: 'cassannet_regularregular';
-		text-transform: uppercase;
-		letter-spacing: 2px;
-		padding: 0 0 10px 0;
-		margin: 0 0 10px 0;
-		border-bottom: 3px solid $dark-highlight;
-		@include font-size(1.8);
-	}
-
-	.date {
-		display: block;
-		font-family: 'cassannet_regularregular';
-		color: $dark-highlight;
-		text-transform: uppercase;
-		letter-spacing: 5px;
-		margin: 0 0 15px 0;
-		@include font-size(.7);
-	}
-
-	.words {
-		text-align: left;
-		width: 60%;
-		margin: 0 auto;
-		color: $fake-black;
-		font-family: "ff-basic-gothic-web-pro";
-		font-weight: 400;
-		@include font-size(1);
-	}
-
-}
-
 @import 'footer';
 
 /* # Single article styles

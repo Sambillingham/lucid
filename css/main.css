@@ -148,6 +148,8 @@ html {
 .main {
   text-align: center; }
 
+/* # Single article styles
+================================================== */
 .post {
   margin: 0 0 65px 0; }
   .post h2 {
@@ -173,14 +175,14 @@ html {
     text-align: left;
     width: 60%;
     margin: 0 auto;
-    color: #100f0e;
+    color: #625c55;
     font-family: "ff-basic-gothic-web-pro";
     font-weight: 400;
     font-size: 10px;
     font-size: 1rem; }
+    .post .words a {
+      border-bottom: 1px solid #cabc8b; }
 
-/* # Single article styles
-================================================== */
 /* # Media Queries
 ================================================== */
 @media only screen and (max-width: 800px) {

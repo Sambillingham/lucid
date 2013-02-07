@@ -99,6 +99,7 @@ alarmComplete = () ->
 
 injectThoughts = () ->
 
+	# 1 hour
 	cycleDuration = 360000
 
 	# Fire at the start of every REM cycle

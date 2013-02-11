@@ -1,11 +1,17 @@
 ---
-title: "A Whole New World"
+title: "Hello, World"
 layout: post
+author: "Sam"
 ---
 
-So, here we are. A new year can only mean one thing: a new Real-time project.
+Pop-up gastropub organic fugiat mcsweeney's. Aesthetic selvage before they sold out ut direct trade eiusmod. Excepteur typewriter disrupt fixie. Flannel retro laborum pug. Williamsburg ut qui adipisicing, helvetica hoodie sunt fixie mustache. Viral wayfarers bicycle rights eiusmod id, food truck mumblecore sapiente reprehenderit intelligentsia ethnic delectus four loko authentic proident. Retro leggings plaid pinterest terry richardson.
 
-Following the success of last year's multi-faceted mind-controlled puzzle game, [Zen Trials](http://benashman.co.uk/edu/zt-all-in-your-head/), we initially thought that a sequel might be the way to go for this six-week project.
+Aliquip tattooed ugh cupidatat qui. Actually brunch street art butcher, raw denim seitan consectetur deserunt umami flannel anim bicycle rights hella semiotics. Excepteur craft beer aesthetic irony. Consectetur beard authentic etsy hella. Delectus do disrupt laboris typewriter. Cliche dreamcatcher cillum authentic. Ethical pug wolf qui photo booth, four loko ullamco disrupt ea YOLO.
 
-There were all sorts of ides being thrown around… multiplayer, dome (IVT) support, an actual narrative and a tropical island setting not unlike that found in the far inferior Crysis series.
+Deep v try-hard squid sartorial. Sustainable jean shorts umami, exercitation nihil est anim dolore blog organic proident tumblr YOLO. Mixtape pickled craft beer accusamus pour-over typewriter, hashtag nostrud intelligentsia. Lo-fi ethical hoodie intelligentsia. Tofu sapiente irony twee esse incididunt. Fixie helvetica carles accusamus 3 wolf moon, semiotics thundercats try-hard jean shorts odd future biodiesel flannel nihil pitchfork 8-bit. Cillum messenger bag try-hard sunt minim eiusmod.
 
+You probably haven't heard of them fap irure, occaecat consequat pariatur tousled retro assumenda pitchfork bushwick. Esse wayfarers nesciunt, cred squid selfies cardigan Austin fanny pack keytar sunt. Selvage typewriter pariatur, sapiente cred whatever deserunt tousled occupy freegan truffaut. Freegan single-origin coffee jean shorts fashion axe. Laborum twee small batch selvage, ea anim bushwick est dolor hella butcher. Dreamcatcher actually twee, vegan cupidatat cillum cardigan. Fanny pack commodo chambray, qui accusamus hashtag gluten-free shoreditch locavore pitchfork keytar ethnic.
+
+Do you need some dummy text? *sigh* Of course you do.
+
+I bet you still use Helvetica too…

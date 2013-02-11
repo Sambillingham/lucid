@@ -162,15 +162,18 @@ html {
     border-bottom: 3px solid #cabc8b;
     font-size: 18px;
     font-size: 1.8rem; }
-  .post .date {
+  .post .meta {
     display: block;
-    font-family: 'cassannet_regularregular';
-    color: #cabc8b;
-    text-transform: uppercase;
-    letter-spacing: 5px;
-    margin: 0 0 15px 0;
-    font-size: 7px;
-    font-size: 0.7rem; }
+    margin: 0 0 25px 0; }
+    .post .meta .date, .post .meta .author {
+      font-family: 'cassannet_regularregular';
+      text-transform: uppercase;
+      letter-spacing: 5px;
+      margin: 0 0 15px 0;
+      font-size: 7px;
+      font-size: 0.7rem; }
+    .post .meta .date {
+      color: #cabc8b; }
   .post .words {
     text-align: left;
     width: 60%;

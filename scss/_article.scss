@@ -12,14 +12,22 @@
 		@include font-size(1.8);
 	}
 
-	.date {
+	.meta {
 		display: block;
-		font-family: 'cassannet_regularregular';
-		color: $dark-highlight;
-		text-transform: uppercase;
-		letter-spacing: 5px;
-		margin: 0 0 15px 0;
-		@include font-size(.7);
+		margin: 0 0 25px 0;
+
+		.date, .author {
+			font-family: 'cassannet_regularregular';
+			text-transform: uppercase;
+			letter-spacing: 5px;
+			margin: 0 0 15px 0;
+			@include font-size(.7);
+		}
+
+		.date {
+			color: $dark-highlight;
+		}
+
 	}
 
 	.words {

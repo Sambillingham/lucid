@@ -8,7 +8,13 @@ layout: layout
 
 		<h2 class="title">{{ page.title }}</h2>
 
-		<span class="date">{{ page.date | date: "%d %B %Y" }}</span>
+		<div class="meta">
+
+			<span class="date">{{ page.date | date: "%d %B %Y" }}</span>
+
+			<span class="author">by {{ page.author }}</span>
+
+		</div>
 
 	</header>
 

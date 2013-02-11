@@ -23,7 +23,6 @@ $submitButton.bind "click", () ->
 $cancelButton.bind "click", () ->
 	toggleAlarm()
 
-
 # Start alarm
 toggleAlarm = () ->
 
@@ -59,15 +58,11 @@ toggleAlarm = () ->
 		$(".night-mode").fadeOut 1000, ->
 			$(".main").fadeIn 1000
 
-		# Flip button text
-		$submitButton.removeClass("asleep").addClass("awake")
-
 		# Clear
 		clearInterval window.ticker
 
 		# Debug
 		console.log "Alarm cancelled"
-
 
 
 # Check alarm against the current time

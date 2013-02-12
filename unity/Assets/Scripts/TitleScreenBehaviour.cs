@@ -4,7 +4,6 @@ using System.Collections;
 public class TitleScreenBehaviour : MonoBehaviour {
 
 	float direction;
-	public float localZ;
 
 	// Use this for initialization
 	void Start () {
@@ -16,8 +15,6 @@ public class TitleScreenBehaviour : MonoBehaviour {
 	void Update () {
 		if (Input.GetKeyUp("space"))
 			InitGame();
-
-		localZ = transform.position.z;
 
 		if (transform.position.z > -3.2f && transform.position.z < 0.6f)
 			transform.Translate(0,0,direction, Space.World);

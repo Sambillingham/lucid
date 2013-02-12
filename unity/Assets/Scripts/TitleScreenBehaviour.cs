@@ -3,14 +3,13 @@ using System.Collections;
 
 public class TitleScreenBehaviour : MonoBehaviour {
 
-	float localY;
 	float direction;
+	public float localZ;
 
 	// Use this for initialization
 	void Start () {
-		localY = transform.position.y;
 		direction = -0.01f;
-		transform.Translate(0,-1.2f,0, Space.Self);
+		//transform.Translate(0,0,-1.2f, Space.World);
 	}
 	
 	// Update is called once per frame
@@ -18,11 +17,13 @@ public class TitleScreenBehaviour : MonoBehaviour {
 		if (Input.GetKeyUp("space"))
 			InitGame();
 
-		if (transform.position.y > -0.6f && transform.position.y < 1f)
-			transform.Translate(0,direction,0, Space.Self);
+		localZ = transform.position.z;
+
+		if (transform.position.z > -3.2f && transform.position.z < 0.6f)
+			transform.Translate(0,0,direction, Space.World);
 		else 
 			direction *= -1f;
-			transform.Translate(0,direction * 2,0, Space.Self);
+			transform.Translate(0,0,direction * 2, Space.World);
 	}
 
 	void InitGame () {

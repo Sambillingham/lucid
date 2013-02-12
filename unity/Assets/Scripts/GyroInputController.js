@@ -6,7 +6,7 @@ private var rotateBy : float = 0f;
 // Use this for initialization
 function Awake () {
 	motor = GetComponent(CharacterMotor);
-	sight = GameObject.Find("Player/Sight");
+	sight = gameObject;
 	camRotation = sight.transform.rotation;
 }
 

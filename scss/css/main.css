@@ -163,23 +163,17 @@ html {
     font-size: 18px;
     font-size: 1.8rem; }
   .post .meta {
-    display: block; }
+    display: block;
+    margin: 0 0 25px 0; }
+    .post .meta .date, .post .meta .author {
+      font-family: 'cassannet_regularregular';
+      text-transform: uppercase;
+      letter-spacing: 5px;
+      margin: 0 0 15px 0;
+      font-size: 7px;
+      font-size: 0.7rem; }
     .post .meta .date {
-      font-family: 'cassannet_regularregular';
-      color: #cabc8b;
-      text-transform: uppercase;
-      letter-spacing: 5px;
-      margin: 0 0 15px 0;
-      font-size: 7px;
-      font-size: 0.7rem; }
-    .post .meta .author {
-      font-family: 'cassannet_regularregular';
-      color: #cabc8b;
-      text-transform: uppercase;
-      letter-spacing: 5px;
-      margin: 0 0 15px 0;
-      font-size: 7px;
-      font-size: 0.7rem; }
+      color: #cabc8b; }
   .post .words {
     text-align: left;
     width: 60%;
@@ -187,8 +181,8 @@ html {
     color: #625c55;
     font-family: "ff-basic-gothic-web-pro";
     font-weight: 400;
-    font-size: 10px;
-    font-size: 1rem; }
+    font-size: 11px;
+    font-size: 1.1rem; }
     .post .words a {
       border-bottom: 1px solid #cabc8b; }
 

@@ -37,7 +37,13 @@
 		color: lighten($fake-black, 30%);
 		font-family: "ff-basic-gothic-web-pro";
 		font-weight: 400;
-		@include font-size(1);
+		@include font-size(1.1);
+
+		h2 {
+			margin: 10px 0;
+			@include font-size(1.2);
+			border-bottom: none;
+		}
 
 		a {
 			border-bottom: 1px solid $dark-highlight;

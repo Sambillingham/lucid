@@ -51,9 +51,9 @@ private function PassOnMovement (dir:Vector3, rot:int) : void
 public function updateHead (oscMessage : OscMessage) : void
 {	
 	Debug.Log("Z: " + oscMessage.Values[0] + ", X: " + oscMessage.Values[1] + ", Y: " + oscMessage.Values[2]);
-	var z:float = -oscMessage.Values[0];
-	var x:float = -oscMessage.Values[1];
-	var y:float = -(oscMessage.Values[2]);
+	var y:float = -oscMessage.Values[0];
+	var z:float = -oscMessage.Values[1];
+	var x:float = -(oscMessage.Values[2]);
 	lookAt = new Vector3(x,y,z);
 	updatingHead = true;
 } 

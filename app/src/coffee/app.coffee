@@ -1,16 +1,19 @@
-document.addEventListener("deviceready", onDeviceReady, false)
-
-onDeviceReady = () ->
-	alert "device ready"
+###
+Resets, fixes 'n' shit
+###
 
 # Kill stupid 300ms click event delay
-window.addEventListener "load", () ->
+window.addEventListener "load", ->
 	new FastClick(document.body)
 , false
 
 # Prevent picker scroll weirdness
-$("input").blur () ->
+$("input").blur ->
 	window.scrollTo(0,0)
+
+###
+UI Elements
+###
 
 # Alarm status
 alarmIsSet = false
@@ -20,16 +23,27 @@ $alarmTime = $("#alarm-time")
 $submitButton = $("#alarm-submit")
 $cancelButton = $("#alarm-cancel")
 
-# Bind events
-$submitButton.bind "click", () ->
-	toggleAlarm()
-	detectDeepSleep()
+duration = 10000
 
-$cancelButton.bind "click", () ->
+###
+Bind events
+###
+
+$submitButton.bind "click", ->
 	toggleAlarm()
+	countdownToDeepSleep()
+	startMonitoringMovement()
+
+$cancelButton.bind "click", ->
+	toggleAlarm()
+	stopMonitoringMovement(window.accelerometerMonitor)
+
+###
+Alarm Clock logic
+###
 
 # Start alarm
-toggleAlarm = () ->
+toggleAlarm = ->
 
 	alarmTime = $alarmTime.val()
 	splitAlarmTime = alarmTime.split(":")
@@ -63,8 +77,14 @@ toggleAlarm = () ->
 		$(".night-mode").fadeOut 1000, ->
 			$(".main").fadeIn 1000
 
-		# Clear
+		# Clear alarm ticker
 		clearInterval window.ticker
+
+		# Clear deep sleep countdown
+		cancelDeepSleepCountdown()
+
+		# Cancel audio player
+
 
 		# Debug
 		console.log "Alarm cancelled"
@@ -85,7 +105,7 @@ checkAlarmAgainstTime = (hour, minutes) ->
 		console.log "tick"
 
 # Notification events
-alarmComplete = () ->
+alarmComplete = ->
 
 	#Vibrate
 	navigator.notification.vibrate 1000
@@ -97,40 +117,67 @@ alarmComplete = () ->
 		"Lucid",
 		"Dismiss"
 
+###
+Audio player
+###
 
-injectThoughts = () ->
+injectThoughts = ->
 
-	# 1 hour
-	cycleDuration = 360000
+	# How long between audio clips?
+	cycleDuration = 10000
 
-	# Fire at the start of every REM cycle
-	setInterval ->
+	# Get audio clips
+	audioClip = new Media("../www/audio/inception.wav");
+
+	# Play at intervals
+	window.audioPlayer = setInterval ->
 		console.log "Injecting thoughts..."
+		audioClip.play()
 	, cycleDuration
 
-detectDeepSleep = () ->
+###
+REM Sleep detection
+###
 
-	onSuccess = (acceleration) ->
-		alert "Acc. X: " + acceleration.x + "\n" +\
-					"Acc. Y: " + acceleration.y + "\n" +\
-					"Acc. Z: " + acceleration.z + "\n" +\
-					"Timestamp: " + acceleration.timestamp + "\n"
-
-	onError = () ->
-		alert "Error!"
-
-	options = { frequency: 3000 }
-
-	watchID = navigator.accelerometer.watchAcceleration(onSuccess, onError, options)
-
-
+countdownToDeepSleep = ->
+	window.countdown = setInterval ->
+		duration = duration - 1000
+		console.log duration
+		if duration is 0
+			# We're in deep sleep
+			cancelDeepSleepCountdown()
+			console.log "We're ready to send audio"
+			injectThoughts()
+	, 1000
 
 
+cancelDeepSleepCountdown = ->
+	clearInterval window.countdown
+	duration = 10000
 
-	# if no movement, start timer for 5 mins...
+interruptDeepSleepCountdown = ->
+	duration = 10000
 
-	# if uninterupted, we're in REM
+###
+Watch for movement
+###
 
+startMonitoringMovement = ->
 
+	accelerometerSuccess = (acceleration) ->
+		if acceleration.x > 1 or acceleration.x < -1 or acceleration.y > 1 or acceleration.y < -1
+			console.log "movement!"
+			interruptDeepSleepCountdown()
 
+	accelerometerError = ->
+		alert "Error watching accelerometer"
 
+	accelerometerOptions = {
+		frequency: 100
+	}
+
+	# Watch accelerometer and log X value every second
+	window.accelerometerMonitor = navigator.accelerometer.watchAcceleration(accelerometerSuccess, accelerometerError, accelerometerOptions)
+
+stopMonitoringMovement = (monitorID) ->
+	navigator.accelerometer.clearWatch(monitorID)

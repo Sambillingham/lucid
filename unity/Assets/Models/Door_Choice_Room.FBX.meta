@@ -1,0 +1,242 @@
+fileFormatVersion: 2
+guid: a7ab5a5fe3951406ba3512eeada632c6
+ModelImporter:
+  serializedVersion: 15
+  fileIDToRecycleName:
+    100000: CentralBase
+    100002: CentralCogs
+    100004: CentralDoorway
+    100006: CentralHall
+    100008: CentralPillar
+    100010: CentralPillar 1
+    100012: CentralSection
+    100014: CentralStar
+    100016: Cog
+    100018: Cog 1
+    100020: Cog 2
+    100022: Cog 3
+    100024: Cog 4
+    100026: Cog 5
+    100028: Cog 6
+    100030: Cog 7
+    100032: Cogs
+    100034: //RootNode
+    100036: LeftBase
+    100038: LeftCogs
+    100040: LeftDoorway
+    100042: LeftHall
+    100044: LeftPillar
+    100046: LeftPillar 1
+    100048: LeftSection
+    100050: LeftStar
+    100052: MainRoom
+    100054: Nut
+    100056: Nut 1
+    100058: Nut 2
+    100060: Nut 3
+    100062: Nut 4
+    100064: Nut 5
+    100066: Nut 6
+    100068: Nut 7
+    100070: Pillars
+    100072: RightBase
+    100074: RightCogs
+    100076: RightDoorway
+    100078: RightHall
+    100080: RightPillar
+    100082: RightPillar 1
+    100084: RightSection
+    100086: RightStar
+    100088: Sections
+    400000: CentralBase
+    400002: CentralCogs
+    400004: CentralDoorway
+    400006: CentralHall
+    400008: CentralPillar
+    400010: CentralPillar 1
+    400012: CentralSection
+    400014: CentralStar
+    400016: Cog
+    400018: Cog 1
+    400020: Cog 2
+    400022: Cog 3
+    400024: Cog 4
+    400026: Cog 5
+    400028: Cog 6
+    400030: Cog 7
+    400032: Cogs
+    400034: //RootNode
+    400036: LeftBase
+    400038: LeftCogs
+    400040: LeftDoorway
+    400042: LeftHall
+    400044: LeftPillar
+    400046: LeftPillar 1
+    400048: LeftSection
+    400050: LeftStar
+    400052: MainRoom
+    400054: Nut
+    400056: Nut 1
+    400058: Nut 2
+    400060: Nut 3
+    400062: Nut 4
+    400064: Nut 5
+    400066: Nut 6
+    400068: Nut 7
+    400070: Pillars
+    400072: RightBase
+    400074: RightCogs
+    400076: RightDoorway
+    400078: RightHall
+    400080: RightPillar
+    400082: RightPillar 1
+    400084: RightSection
+    400086: RightStar
+    400088: Sections
+    2300000: CentralBase
+    2300002: CentralDoorway
+    2300004: CentralHall
+    2300006: CentralPillar 1
+    2300008: CentralStar
+    2300010: Cog
+    2300012: Cog 1
+    2300014: Cog 2
+    2300016: Cog 3
+    2300018: Cog 4
+    2300020: Cog 5
+    2300022: Cog 6
+    2300024: Cog 7
+    2300026: LeftBase
+    2300028: LeftDoorway
+    2300030: LeftHall
+    2300032: LeftPillar 1
+    2300034: LeftStar
+    2300036: MainRoom
+    2300038: Nut
+    2300040: Nut 1
+    2300042: Nut 2
+    2300044: Nut 3
+    2300046: Nut 4
+    2300048: Nut 5
+    2300050: Nut 6
+    2300052: Nut 7
+    2300054: RightBase
+    2300056: RightDoorway
+    2300058: RightHall
+    2300060: RightPillar 1
+    2300062: RightStar
+    3300000: CentralBase
+    3300002: CentralDoorway
+    3300004: CentralHall
+    3300006: CentralPillar 1
+    3300008: CentralStar
+    3300010: Cog
+    3300012: Cog 1
+    3300014: Cog 2
+    3300016: Cog 3
+    3300018: Cog 4
+    3300020: Cog 5
+    3300022: Cog 6
+    3300024: Cog 7
+    3300026: LeftBase
+    3300028: LeftDoorway
+    3300030: LeftHall
+    3300032: LeftPillar 1
+    3300034: LeftStar
+    3300036: MainRoom
+    3300038: Nut
+    3300040: Nut 1
+    3300042: Nut 2
+    3300044: Nut 3
+    3300046: Nut 4
+    3300048: Nut 5
+    3300050: Nut 6
+    3300052: Nut 7
+    3300054: RightBase
+    3300056: RightDoorway
+    3300058: RightHall
+    3300060: RightPillar 1
+    3300062: RightStar
+    4300000: MainRoom
+    4300002: RightHall
+    4300004: RightDoorway
+    4300006: LeftDoorway
+    4300008: LeftHall
+    4300010: CentralHall
+    4300012: CentralDoorway
+    4300014: Nut
+    4300016: Cog
+    4300018: Nut
+    4300020: Cog
+    4300022: Nut
+    4300024: Cog
+    4300026: Nut
+    4300028: Cog
+    4300030: Nut
+    4300032: Cog
+    4300034: Nut
+    4300036: Nut
+    4300038: Nut
+    4300040: Cog
+    4300042: Cog
+    4300044: Cog
+    4300046: CentralStar
+    4300048: CentralBase
+    4300050: CentralPillar
+    4300052: LeftPillar
+    4300054: LeftBase
+    4300056: LeftStar
+    4300058: RightStar
+    4300060: RightPillar
+    4300062: RightBase
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .100000001
+    meshCompression: 0
+    addColliders: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 0
+    splitTangentsAcrossUV: 1
+    normalImportMode: 1
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    handles: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  additionalBone: 1
+  animationType: 2
+  userData: 

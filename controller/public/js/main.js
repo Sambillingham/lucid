@@ -1,6 +1,6 @@
 $(function() {
 
-    var socket = io.connect('http://192.168.43.39:8080');
+    var socket = io.connect('http://169.254.16.1:8080');
 
             var whoAreYou = { move: false, look: false },
                 accellValues = { x: 0, y: 0, d: 0 };
@@ -81,7 +81,7 @@ $(function() {
 
             }
 
-            $("#moveClick").click(function() {
+            $("#move").click(function() {
 
                     whoAreYou.move = true;
                     whoAreYou.look = false;
@@ -90,7 +90,7 @@ $(function() {
                    
              });
 
-            $("#lookClick").click(function() {
+            $("#look").click(function() {
 
                     whoAreYou.move = false;
                     whoAreYou.look = true;

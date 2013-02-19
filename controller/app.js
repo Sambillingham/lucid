@@ -8,7 +8,7 @@
         accellMove = { x: 0, y: 0, d: 0 };
         accellLook = { x: 0, y: 0, d: 0 };
 
-    var client = new osc.Client('192.168.43.144', 3333);
+    var client = new osc.Client('169.254.224.184', 3333);
 
     server.listen(8080);
 

@@ -70,9 +70,17 @@
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
     
+    // Prevent bounce
     [[[self.viewController.webView subviews] lastObject] setScrollEnabled:NO];
-
+    
+    // Prevent sleep
+    [application setIdleTimerDisabled:YES];
+    
     return YES;
+}
+
+- (void)applicationDidFinishLaunching:(UIApplication *)application {
+    [application setIdleTimerDisabled:YES];
 }
 
 // this happens while we are running ( in the background, or from within our own app )

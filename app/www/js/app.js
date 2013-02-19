@@ -6,7 +6,7 @@ Resets, fixes 'n' shit
 
 
 (function() {
-  var $alarmTime, $cancelButton, $submitButton, alarmComplete, alarmIsSet, cancelDeepSleepCountdown, checkAlarmAgainstTime, countdownToDeepSleep, duration, injectThoughts, interruptDeepSleepCountdown, startMonitoringMovement, stopMonitoringMovement, toggleAlarm;
+  var $alarmTime, $cancelButton, $submitButton, alarmComplete, alarmIsSet, audioIncrement, cancelDeepSleepCountdown, checkAlarmAgainstTime, countdownToDeepSleep, duration, injectThoughts, interruptDeepSleepCountdown, startMonitoringMovement, stopMonitoringMovement, toggleAlarm;
 
   window.addEventListener("load", function() {
     return new FastClick(document.body);
@@ -30,6 +30,8 @@ Resets, fixes 'n' shit
   $cancelButton = $("#alarm-cancel");
 
   duration = 10000;
+
+  audioIncrement = 0;
 
   /*
   Bind events
@@ -74,6 +76,7 @@ Resets, fixes 'n' shit
       });
       clearInterval(window.ticker);
       cancelDeepSleepCountdown();
+      clearInterval(window.audioPlayer);
       return console.log("Alarm cancelled");
     }
   };
@@ -101,12 +104,16 @@ Resets, fixes 'n' shit
 
 
   injectThoughts = function() {
-    var audioClip, cycleDuration;
-    cycleDuration = 10000;
-    audioClip = new Media("../www/audio/inception.wav");
+    var audioClips, cycleDuration, i;
+    audioClips = ["../www/audio/clue_triangle_a.mp3", "../www/audio/clue_triangle_b.mp3", "../www/audio/clue_descriptive.mp3", "../www/audio/musical_complete.mp3", "../www/audio/musical_bass.mp3", "../www/audio/musical_drums.mp3", "../www/audio/musical_guitar.mp3", "../www/audio/musical_organ.mp3"];
+    cycleDuration = 30000;
+    i = 0;
     return window.audioPlayer = setInterval(function() {
-      console.log("Injecting thoughts...");
-      return audioClip.play();
+      if (i < audioClips.length) {
+        window.clip = new Media(audioClips[i]);
+        window.clip.play();
+        return i++;
+      }
     }, cycleDuration);
   };
 
@@ -133,7 +140,13 @@ Resets, fixes 'n' shit
   };
 
   interruptDeepSleepCountdown = function() {
-    return duration = 10000;
+    clearInterval(window.countdown);
+    duration = 10000;
+    clearInterval(window.audioPlayer);
+    if (typeof window.clip !== "undefined") {
+      window.clip.stop();
+    }
+    return countdownToDeepSleep();
   };
 
   /*

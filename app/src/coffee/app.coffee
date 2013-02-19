@@ -22,8 +22,8 @@ alarmIsSet = false
 $alarmTime = $("#alarm-time")
 $submitButton = $("#alarm-submit")
 $cancelButton = $("#alarm-cancel")
-
 duration = 10000
+audioIncrement = 0
 
 ###
 Bind events
@@ -84,7 +84,7 @@ toggleAlarm = ->
 		cancelDeepSleepCountdown()
 
 		# Cancel audio player
-
+		clearInterval window.audioPlayer
 
 		# Debug
 		console.log "Alarm cancelled"
@@ -123,16 +123,26 @@ Audio player
 
 injectThoughts = ->
 
+	audioClips = [
+		"../www/audio/clue_triangle_a.mp3",
+		"../www/audio/clue_triangle_b.mp3",
+		"../www/audio/clue_descriptive.mp3"
+		"../www/audio/musical_complete.mp3",
+		"../www/audio/musical_bass.mp3",
+		"../www/audio/musical_drums.mp3",
+		"../www/audio/musical_guitar.mp3",
+		"../www/audio/musical_organ.mp3",
+	]
+
 	# How long between audio clips?
-	cycleDuration = 10000
+	cycleDuration = 30000
 
-	# Get audio clips
-	audioClip = new Media("../www/audio/inception.wav");
-
-	# Play at intervals
+	i = 0
 	window.audioPlayer = setInterval ->
-		console.log "Injecting thoughts..."
-		audioClip.play()
+		if i < audioClips.length
+			window.clip = new Media(audioClips[i])
+			window.clip.play()
+			i++
 	, cycleDuration
 
 ###
@@ -156,7 +166,18 @@ cancelDeepSleepCountdown = ->
 	duration = 10000
 
 interruptDeepSleepCountdown = ->
+	# Clear deep sleep countdown
+	clearInterval window.countdown
+	# Reset countdown timer
 	duration = 10000
+	# Stop playing audio if we're doing that
+	clearInterval window.audioPlayer
+
+	if typeof window.clip isnt "undefined"
+		window.clip.stop()
+
+	# Kick back to deep sleep countdown
+	countdownToDeepSleep()
 
 ###
 Watch for movement

@@ -8,7 +8,7 @@
         accellMove = { x: 0, y: 0, d: 0 };
         accellLook = { x: 0, y: 0, d: 0 };
 
-    var client = new osc.Client('192.168.0.5', 3333);
+    var client = new osc.Client('192.168.43.144', 3333);
 
     server.listen(8080);
 
@@ -16,6 +16,19 @@
     app.configure(function() {
 
             app.use(express.static(__dirname + '/public'));
+
+    });
+
+
+    app.get('/look', function (req, res) {
+
+            res.sendfile(__dirname + '/look.html');
+
+    });
+
+    app.get('/move', function (req, res) {
+
+            res.sendfile(__dirname + '/move.html');
 
     });
 
@@ -98,7 +111,7 @@
                     accellMove.y = 0;
             }
 
-            client.send('/move', accellMove.x, accellMove.y);
+            client.send('/move', accellMove.x, accellMove.y, 0 );
 
             console.log('Move',  " X :" + accellMove.x + " Y :" + accellMove.y );
 

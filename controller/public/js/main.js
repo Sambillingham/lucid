@@ -1,6 +1,6 @@
 $(function() {
 
-    var socket = io.connect('http://192.168.0.20');
+    var socket = io.connect('http://192.168.43.39:8080');
 
             var whoAreYou = { move: false, look: false },
                 accellValues = { x: 0, y: 0, d: 0 };
@@ -8,20 +8,20 @@ $(function() {
  
             socket.on('connect', function () {
 
-                $('#welcome').append("Sockets Bitches").removeClass("disconnected").addClass("connected");
+                $('#welcome').removeClass("disconnected").addClass("connected");
 
                      
                 socket.on('selectedPlayer', function (who) {
 
                         if ( who.move === true && who.look === false ) {
 
-                                $('#welcome').html('MOVE');
+                                $('#move').html('Move');
                                 
                         }
 
                         if ( who.look === true && who.move === false)  {
 
-                                $('#welcome').html('LOOK');
+                                $('#look').html('Looking');
                                 
                         }
 
@@ -30,7 +30,9 @@ $(function() {
 
                 socket.on('disconnect', function () {
 
-                       $('#welcome').append('Disconnected').removeClass("connected").addClass("disconnected");
+                       $('#welcome').html('Disconnected').removeClass("connected").addClass("disconnected");
+                       $('#move').html('');
+                       $('#love').html('');
 
                 });
 
@@ -40,6 +42,8 @@ $(function() {
 
             // Do we have accelerometer support?
             if (window.DeviceMotionEvent !== undefined) {
+
+                $("#welcome").removeClass("notMobile");
 
                 // Gyrate
                 window.ondeviceorientation = function(event) {
@@ -67,13 +71,13 @@ $(function() {
                             socket.emit('sendLookAccellValues' , accellValues );
                     }
 
-                }
+                };
 
 
             } else {
 
                     // NO accelerometer support
-                    $("#welcome").append("<h1>No gyro, Bro. Try again in Mobile Safari.</h1>");
+                    $("#welcome").addClass("notMobile").append("<h1> I'm sorry Lucid controllers require a mobile device</h1>");
 
             }
 
@@ -92,6 +96,18 @@ $(function() {
                     whoAreYou.look = true;
                    
                     socket.emit('player', whoAreYou);
+                   
+             });
+
+            $("#lookSelect").click(function() {
+
+                    window.location = '/look';
+                   
+             });
+
+            $("#moveSelect").click(function() {
+
+                    window.location = '/move';
                    
              });
 

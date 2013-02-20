@@ -149,36 +149,36 @@
 
     function sendOSCMove() {
 
-            if ( accellMove.y >  10 || accellMove.y < -10 ) {
+            if ( accellMove.x >  10 || accellMove.x < -10 ) {
 
-                    accellMove.y = accellMove.y;
+                    accellMove.x = accellMove.x;
 
             } else {
 
-                    accellMove.y = 0;
+                    accellMove.x = 0;
             }
 
 
-            if ( accellMove.x <  -10  ) {
+            if ( accellMove.y <  -10  ) {
 
-                    accellMove.x = -1;
+                    accellMove.y = -1;
 
-            } else if ( accellMove.x >  10  ) {
+            } else if ( accellMove.y >  10  ) {
 
-                    accellMove.x = 1;
+                    accellMove.y = 1;
                     
             } else {
 
-                accellMove.x = 0;
+                accellMove.y = 0;
             }
 
 
 
             
 
-            client.send('/move', accellMove.x , accellMove.y );
+            client.send('/move', accellMove.y , accellMove.x );
 
-            console.log('Move',  " X :" + accellMove.x + " Y :" + accellMove.y );
+            console.log('Move',  " Y :" + accellMove.y + " X :" + accellMove.x );
 
     }
 

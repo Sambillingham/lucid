@@ -8,7 +8,7 @@ public var turnSpeed : float = 3f;
 // Use this for initialization
 function Awake () {
 	motor = GetComponent(CharacterController);
-	sight = gameObject;
+	sightTo = new Vector3(0,0,0);
 	camRotation = sight.transform.rotation;
 }
 
@@ -21,9 +21,19 @@ function Update () {
 
 	//gameObject.transform.RotateAround(transform.position, new Vector3(0,1,0), Time.deltaTime * rotateBy);
 	//gameObject.transform.rotation = Quaternion.Slerp(gameObject.transform.rotation, Quaternion.Euler(gameObject.transform.rotation.x, gameObject.transform.rotation.y + rotateBy, gameObject.transform.rotation.z), Time.deltaTime * rotateBy);
-	gameObject.transform.Rotate(0,rotateBy * turnSpeed,0);
 	//sight.transform.Rotate(-Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X"), 0, Space.Self);
-	sight.transform.Rotate(sightTo.x, sightTo.y, sightTo.z, Space.Self);
+	//sight.transform.Rotate(sightTo.x, sightTo.y, sightTo.z, Space.Self);
+	
+
+	sight.transform.localRotation = Quaternion.Slerp(sight.transform.localRotation, Quaternion.Euler(sightTo), Time.deltaTime);
+	//sight.transform.localRotation = Quaternion.Euler(sightTo);
+	
+	// sight.transform.localEulerAngles.x = sightTo.x;
+	// sight.transform.localEulerAngles.y = sightTo.y;
+	// sight.transform.localEulerAngles.z = sightTo.z;
+	//rotateBy = (sightTo.y != 0) ? (rotateBy + sightTo.y) / 5 : 0;
+	transform.Rotate(0,rotateBy * turnSpeed,0, Space.World);
+
 	//Debug.Log(Input.GetAxis("Mouse Y") + ", " + Input.GetAxis("Mouse X"));
 	//sight.transform.Rotate(sightTo.x, sightTo.y, sightTo.z);
 	//sight.transform.localRotation = Quaternion.Slerp(sight.transform.localRotation, sightTo, Time.deltaTime);
@@ -64,5 +74,5 @@ public function AdjustPlayerRotation (amount:float) :void {
 
 public function AdjustSight (rotationVector:Vector3) :void {
 	//sightTo = Quaternion.Euler(rotationVector);
-	sightTo = rotationVector;
+	sightTo = new Vector3(-50.0 + rotationVector.x, rotationVector.y * 100.0, rotationVector.z);
 }

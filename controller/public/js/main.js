@@ -1,6 +1,6 @@
 $(function() {
 
-    var socket = io.connect('http://192.168.0.20:8080');
+    var socket = io.connect('http://169.254.14.31:8080');
 
             var whoAreYou = { move: false, look: false },
                 accellValues = { x: 0, y: 0, d: 0 };

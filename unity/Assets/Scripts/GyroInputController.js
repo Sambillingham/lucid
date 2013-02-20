@@ -22,7 +22,8 @@ function Update () {
 	//gameObject.transform.RotateAround(transform.position, new Vector3(0,1,0), Time.deltaTime * rotateBy);
 	//gameObject.transform.rotation = Quaternion.Slerp(gameObject.transform.rotation, Quaternion.Euler(gameObject.transform.rotation.x, gameObject.transform.rotation.y + rotateBy, gameObject.transform.rotation.z), Time.deltaTime * rotateBy);
 	gameObject.transform.Rotate(0,rotateBy * turnSpeed,0);
-	sight.transform.Rotate(-Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X"), 0, Space.Self);
+	//sight.transform.Rotate(-Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X"), 0, Space.Self);
+	sight.transform.Rotate(sightTo.x, sightTo.y, sightTo.z, Space.Self);
 	//Debug.Log(Input.GetAxis("Mouse Y") + ", " + Input.GetAxis("Mouse X"));
 	//sight.transform.Rotate(sightTo.x, sightTo.y, sightTo.z);
 	//sight.transform.localRotation = Quaternion.Slerp(sight.transform.localRotation, sightTo, Time.deltaTime);
@@ -63,5 +64,5 @@ public function AdjustPlayerRotation (amount:float) :void {
 
 public function AdjustSight (rotationVector:Vector3) :void {
 	//sightTo = Quaternion.Euler(rotationVector);
-	sightTo = rotationVector * Time.deltaTime;
+	sightTo = rotationVector;
 }

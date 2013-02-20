@@ -6,7 +6,7 @@ Resets, fixes 'n' shit
 
 
 (function() {
-  var $alarmTime, $cancelButton, $submitButton, alarmComplete, alarmIsSet, audioIncrement, cancelDeepSleepCountdown, checkAlarmAgainstTime, countdownToDeepSleep, duration, injectThoughts, interruptDeepSleepCountdown, startMonitoringMovement, stopMonitoringMovement, toggleAlarm;
+  var $alarmTime, $cancelButton, $submitButton, alarmComplete, alarmDismiss, alarmHasBeenCalled, alarmIsSet, audioIncrement, cancelDeepSleepCountdown, checkAlarmAgainstTime, countdownToDeepSleep, duration, injectThoughts, interruptDeepSleepCountdown, startMonitoringMovement, stopMonitoringMovement, toggleAlarm;
 
   window.addEventListener("load", function() {
     return new FastClick(document.body);
@@ -22,6 +22,8 @@ Resets, fixes 'n' shit
 
 
   alarmIsSet = false;
+
+  alarmHasBeenCalled = false;
 
   $alarmTime = $("#alarm-time");
 
@@ -77,7 +79,11 @@ Resets, fixes 'n' shit
       clearInterval(window.ticker);
       cancelDeepSleepCountdown();
       clearInterval(window.audioPlayer);
-      return console.log("Alarm cancelled");
+      if (typeof window.alarmTone !== "undefined") {
+        window.alarmTone.stop();
+      }
+      console.log("Alarm cancelled");
+      return alarmHasBeenCalled = false;
     }
   };
 
@@ -87,15 +93,26 @@ Resets, fixes 'n' shit
     currentHour = date.getHours();
     currentMins = date.getMinutes();
     if (hour === currentHour && minutes === currentMins) {
-      return alarmComplete();
+      if (!alarmHasBeenCalled) {
+        alarmComplete();
+        alarmHasBeenCalled = true;
+        return console.log("Alarm has been called?: " + alarmHasBeenCalled);
+      }
     } else {
-      return console.log("tick");
+      console.log("tick");
+      return console.log("Alarm status: " + alarmHasBeenCalled);
     }
   };
 
   alarmComplete = function() {
     navigator.notification.vibrate(1000);
-    return navigator.notification.alert("Wake up, Sheeple", toggleAlarm(), "Lucid", "Dismiss");
+    window.alarmTone = new Media("../www/audio/alarm_loop.wav");
+    window.alarmTone.play();
+    return navigator.notification.alert("It's time to wake up, participant", toggleAlarm, "Lucid", "OK");
+  };
+
+  alarmDismiss = function() {
+    return console.log("Alarm dismissed");
   };
 
   /*

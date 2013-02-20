@@ -37,7 +37,7 @@ public function updateFeet (oscMessage : OscMessage) : void
 {	
 	//Debug.Log("ROTATION: " + oscMessage.Values[0] + ", VERTICAL: " + oscMessage.Values[1]);
 	rotation = oscMessage.Values[0];// / (multiplier);
-	var vertical:int = oscMessage.Values[1] * -multiplier;
+	var vertical:int = oscMessage.Values[1] * multiplier;
 	direction = new Vector3(0, 0, vertical);
 	updatingFeet = updatingHead = true;
 } 

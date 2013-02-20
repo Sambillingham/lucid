@@ -22,7 +22,7 @@ alarmIsSet = false
 $alarmTime = $("#alarm-time")
 $submitButton = $("#alarm-submit")
 $cancelButton = $("#alarm-cancel")
-duration = 10000
+duration = 1800000
 audioIncrement = 0
 
 ###
@@ -135,7 +135,7 @@ injectThoughts = ->
 	]
 
 	# How long between audio clips?
-	cycleDuration = 30000
+	cycleDuration = 600000
 
 	i = 0
 	window.audioPlayer = setInterval ->
@@ -163,13 +163,13 @@ countdownToDeepSleep = ->
 
 cancelDeepSleepCountdown = ->
 	clearInterval window.countdown
-	duration = 10000
+	duration = 1800000
 
 interruptDeepSleepCountdown = ->
 	# Clear deep sleep countdown
 	clearInterval window.countdown
 	# Reset countdown timer
-	duration = 10000
+	duration = 1800000
 	# Stop playing audio if we're doing that
 	clearInterval window.audioPlayer
 

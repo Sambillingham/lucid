@@ -29,7 +29,7 @@ Resets, fixes 'n' shit
 
   $cancelButton = $("#alarm-cancel");
 
-  duration = 10000;
+  duration = 1800000;
 
   audioIncrement = 0;
 
@@ -106,7 +106,7 @@ Resets, fixes 'n' shit
   injectThoughts = function() {
     var audioClips, cycleDuration, i;
     audioClips = ["../www/audio/clue_triangle_a.mp3", "../www/audio/clue_triangle_b.mp3", "../www/audio/clue_descriptive.mp3", "../www/audio/musical_complete.mp3", "../www/audio/musical_bass.mp3", "../www/audio/musical_drums.mp3", "../www/audio/musical_guitar.mp3", "../www/audio/musical_organ.mp3"];
-    cycleDuration = 30000;
+    cycleDuration = 600000;
     i = 0;
     return window.audioPlayer = setInterval(function() {
       if (i < audioClips.length) {
@@ -136,12 +136,12 @@ Resets, fixes 'n' shit
 
   cancelDeepSleepCountdown = function() {
     clearInterval(window.countdown);
-    return duration = 10000;
+    return duration = 1800000;
   };
 
   interruptDeepSleepCountdown = function() {
     clearInterval(window.countdown);
-    duration = 10000;
+    duration = 1800000;
     clearInterval(window.audioPlayer);
     if (typeof window.clip !== "undefined") {
       window.clip.stop();

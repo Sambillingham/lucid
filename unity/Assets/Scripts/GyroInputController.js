@@ -2,6 +2,7 @@ public var motor : CharacterController;
 public var sight : GameObject;
 private var sightTo : Quaternion;
 private var rotateBy : float = 0f;
+public var walkSpeed : float = 10f;
 public var turnSpeed : float = 3f;
 
 // Use this for initialization
@@ -16,6 +17,7 @@ function Update () {
 	// Get the input vector from kayboard or analog stick
 	var keyRotation:float = Input.GetAxis("Horizontal");
 	if (keyRotation != 0) rotateBy = keyRotation;
+	motor.SimpleMove(Input.GetAxis("Vertical") * transform.forward * walkSpeed);
 
 	//gameObject.transform.RotateAround(transform.position, new Vector3(0,1,0), Time.deltaTime * rotateBy);
 	//gameObject.transform.rotation = Quaternion.Slerp(gameObject.transform.rotation, Quaternion.Euler(gameObject.transform.rotation.x, gameObject.transform.rotation.y + rotateBy, gameObject.transform.rotation.z), Time.deltaTime * rotateBy);
@@ -48,8 +50,7 @@ public function UpdatePlayerPosition (directionVector:Vector3) :void {
 	
 	// Apply the direction to the CharacterMotor
 	
-	motor.SimpleMove(directionVector * motor.speed);
-
+	motor.SimpleMove(transform.forward * walkSpeed);
 	//motor.inputMoveDirection = transform.rotation * directionVector;
 
 }

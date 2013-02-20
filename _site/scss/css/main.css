@@ -110,6 +110,9 @@ a:hover, a:focus {
 
 /* # SASS Mixins
 ================================================== */
+.about {
+  background: black; }
+
 /* # Sensibilities
 ================================================== */
 * {
@@ -183,6 +186,11 @@ html {
     font-weight: 400;
     font-size: 11px;
     font-size: 1.1rem; }
+    .post .words h2 {
+      margin: 10px 0;
+      font-size: 12px;
+      font-size: 1.2rem;
+      border-bottom: none; }
     .post .words a {
       border-bottom: 1px solid #cabc8b; }
 

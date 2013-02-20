@@ -8,7 +8,7 @@
         accellMove = { x: 0, y: 0, d: 0 };
         accellLook = { x: 0, y: 0, d: 0 };
 
-    var client = new osc.Client('169.254.138.217', 3333);
+    var client = new osc.Client('192.168.43.144', 3333);
 
     server.listen(8080);
 
@@ -91,9 +91,56 @@
 
     function sendOSCLook() {
 
-            client.send('/look', accellLook.d, accellLook.x, accellLook.y );
+            var thisLookD = ( accellLook.d/4 ),
+                thisLookX = accellLook.x,
+                thisLookY = accellLook.y;
 
-            console.log('look', "  Z:" + accellLook.d + " X :" + accellLook.x  + " Y :" + accellLook.y);
+
+            if ( thisLookD > 0 && thisLookD < 45 ){
+
+                thisLookD = 0 -(thisLookD);
+
+            } else if ( thisLookD >= 45 && thisLookD <=90){
+
+                thisLookD = 90 - thisLookD;
+            }
+
+            thisLookD = ((thisLookD/45)*2);
+
+            if ( thisLookD >= 1) {
+
+                thisLookD = 1;
+
+            } else if ( thisLookD <= -1) {
+
+                    thisLookD = -1;
+
+            }
+
+            if ( thisLookX > 45 ){
+
+                thisLookX = 45;
+
+            } else if ( thisLookX < - 45 ) {
+
+                thisLookX = -45;
+            }
+
+            if ( thisLookY > 45 ){
+
+                thisLookY = 45;
+
+            } else if ( thisLookY < - 45 ) {
+
+                thisLookY = -45;
+            }
+
+
+
+            client.send('/look', thisLookD, thisLookX, thisLookY );
+
+            console.log('look', "  Z:" + thisLookD + " X :" + thisLookX  + " Y :" + thisLookY);
+
 
             
 
@@ -102,36 +149,36 @@
 
     function sendOSCMove() {
 
-            if ( accellMove.y >  10 || accellMove.y < -10 ) {
+            if ( accellMove.x >  10 || accellMove.x < -10 ) {
 
-                    accellMove.y = accellMove.y;
+                    accellMove.x = accellMove.x;
 
             } else {
 
-                    accellMove.y = 0;
+                    accellMove.x = 0;
             }
 
 
-            if ( accellMove.x <  -10  ) {
+            if ( accellMove.y <  -10  ) {
 
-                    accellMove.x = -1;
+                    accellMove.y = -1;
 
-            } else if ( accellMove.x >  10  ) {
+            } else if ( accellMove.y >  10  ) {
 
-                    accellMove.x = 1;
+                    accellMove.y = 1;
                     
             } else {
 
-                accellMove.x = 0;
+                accellMove.y = 0;
             }
 
 
 
             
 
-            client.send('/move', accellMove.x , accellMove.y );
+            client.send('/move', accellMove.y , accellMove.x );
 
-            console.log('Move',  " X :" + accellMove.x + " Y :" + accellMove.y );
+            console.log('Move',  " Y :" + accellMove.y + " X :" + accellMove.x );
 
     }
 

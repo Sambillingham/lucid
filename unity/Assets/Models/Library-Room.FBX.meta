@@ -327,6 +327,7 @@ ModelImporter:
     100642: //RootNode
     100644: RightPlinth
     100646: Room
+    100648: Books_2
     400000: Books
     400002: Books 1
     400004: Books001
@@ -651,6 +652,7 @@ ModelImporter:
     400642: //RootNode
     400644: RightPlinth
     400646: Room
+    400648: Books_2
     2300000: Box022
     2300002: Box023
     2300004: Box024

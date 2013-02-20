@@ -12,6 +12,7 @@ ModelImporter:
     100012: RightPillarTwo
     100014: RightPillarTwo 1
     100016: Room
+    100018: RightPillarTwo_2
     400000: //RootNode
     400002: LeftCurtain
     400004: LeftPillarOne
@@ -21,6 +22,7 @@ ModelImporter:
     400012: RightPillarTwo
     400014: RightPillarTwo 1
     400016: Room
+    400018: RightPillarTwo_2
     2300000: LeftCurtain
     2300002: LeftPillarOne
     2300004: LeftPillarTwo
@@ -28,6 +30,7 @@ ModelImporter:
     2300008: RightPillarTwo
     2300010: RightPillarTwo 1
     2300012: Room
+    2300014: RightPillarTwo_2
     3300000: LeftCurtain
     3300002: LeftPillarOne
     3300004: LeftPillarTwo
@@ -35,6 +38,7 @@ ModelImporter:
     3300008: RightPillarTwo
     3300010: RightPillarTwo 1
     3300012: Room
+    3300014: RightPillarTwo_2
     4300000: Room
     4300002: RightPillarTwo
     4300004: RightPillarTwo
@@ -42,6 +46,7 @@ ModelImporter:
     4300008: LeftPillarTwo
     4300010: RightCurtain
     4300012: LeftCurtain
+    4300014: RightPillarTwo_2
     9500000: //RootNode
   materials:
     importMaterials: 1

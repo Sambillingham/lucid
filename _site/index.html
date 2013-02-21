@@ -34,13 +34,13 @@
 
 				<header>
 
-					<h2><a class="title" href="/lucid/about">About</a></h2>
+					<h2><a class="title" href="/lucid/lucid-app">Lucid.app</a></h2>
 
 					<div class="meta">
 
-						<span class="date">20 February 2013</span>
+						<span class="date">21 February 2013</span>
 
-						<span class="author">by </span>
+						<span class="author">by Ben</span>
 
 					</div>
 
@@ -48,48 +48,33 @@
 
 				<section class="words">
 
-					<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<title> About |  Lucid</title>
-<meta name="description" content="">
-<meta name="author" content="">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="/lucid/css/main.css">
-<script type="text/javascript" src="//use.typekit.net/xay3ywg.js"></script>
-<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+					<p>As mentioned in previous posts, Lucid revolves around the exploration and experimentation in the field of Hypnopaedia – or  sleep-learning.</p>
 
-<!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-</head>
-<body>
+<p>From the early stages of development, we knew that we would need some kind of device that could be used to track the varying sleep cycles that a user will go through nightly. Our initial idea was to use an Arduino attached to various sensors such as accelerometers and microphones. We eventually realised that this solution would result in a bulky and impractical product, and began to look elsewhere.</p>
 
-	<header class="global-header" role="banner">
+<p>Luckily, the iPhone 4S in my left pocket happened to support every feature that we wished to implement – accelerometer, microphone, speaker – and it did it all in a beautiful little package.</p>
 
-		<a href="http://sambillingham.github.com/lucid"><h1>Lucid</h1></a>
+<p>So, we decided to build an iOS app, allowing us to access all of the native hardware features that we would require for our project.</p>
 
-	</header>
+<p>As outlined in 'Dreams', the aim of the app was simple: Detect when a user is in a state of REM sleep, and begin to play them audio. The user will then be subjected to a 'test' at a later date to determine whether or not they absorbed the information played to them whilst they slept.</p>
 
-	<div class="content">
+<h2>REM Detection</h2>
 
-		<section class="main wrap about" role="main">
+<p>The first step of the 'injection' process was to determine when a user was in REM sleep. Apps such as Sleep Cycle achieve this by waiting for complete stillness – one of the traits of sleep paralysis associated with REM sleep. We achieved this is a very similar way. Lucid will start a 30 minute timer when activated and if the timer is uninterruped by movement, we know it is likely that the user is in REM sleep.</p>
 
-			lol
+<p>As soon as the user enters back in to a lighter state of sleep, however, the timer will be interrupted, reset back to zero and the process is restarted all over again. This process is likely to occur 3-5 timer per night.</p>
 
-		</section>
+<h2>Playing Audio</h2>
 
-	</div>
+<p>Now that we know our user is in REM sleep, we are ready to begin sending them audio. The 'test' involved a user correctly solving three puzzles: One a simple deduction puzzle, the next a descriptive stoytelling task, and the final a musical composition challenge.</p>
 
-	<footer class="global-footer" role="contentinfo">
+<p>Lucid will play clues during a user's REM cycles that relate directly to these puzzles, hopefully ensuring that the user will be able to complete them successfully when faced.</p>
 
-		<div class="wrap"></div>
+<h2>An alarm clock with a twist</h2>
 
-	</footer>
+<p>Now, we had a fully functioning app, ready and waiting to inject thoughts in to those willing to participate, but we wanted the app to appear as though it was nothing more than just an alarm clock.</p>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-<script src="/lucid/js/app.js"></script>
-</body>
-</html>
+<p>On top of these features, we added all the basic functionality ofma standard alarm clock, allowing for the user to use the app on a daily basis without suspecting anything.</p>
 
 
 				</section>

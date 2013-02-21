@@ -74,7 +74,7 @@
     [[[self.viewController.webView subviews] lastObject] setScrollEnabled:NO];
     
     // Prevent sleep
-    [application setIdleTimerDisabled:YES];
+    application.idleTimerDisabled = YES;
     
     return YES;
 }

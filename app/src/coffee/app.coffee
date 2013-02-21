@@ -17,6 +17,7 @@ UI Elements
 
 # Alarm status
 alarmIsSet = false
+alarmHasBeenCalled = false
 
 # Form elements
 $alarmTime = $("#alarm-time")
@@ -86,9 +87,14 @@ toggleAlarm = ->
 		# Cancel audio player
 		clearInterval window.audioPlayer
 
+		# Stop playing alarm tone, if playing
+		if typeof window.alarmTone isnt "undefined"
+			window.alarmTone.stop()
+
 		# Debug
 		console.log "Alarm cancelled"
 
+		alarmHasBeenCalled = false
 
 # Check alarm against the current time
 checkAlarmAgainstTime = (hour, minutes) ->
@@ -100,22 +106,29 @@ checkAlarmAgainstTime = (hour, minutes) ->
 
 	# Alert on time match
 	if hour is currentHour and minutes is currentMins
-		alarmComplete()
+		if not alarmHasBeenCalled
+			alarmComplete()
+			alarmHasBeenCalled = true
+			console.log "Alarm has been called?: #{alarmHasBeenCalled}"
 	else
 		console.log "tick"
+		console.log "Alarm status: #{alarmHasBeenCalled}"
 
 # Notification events
 alarmComplete = ->
-
 	#Vibrate
 	navigator.notification.vibrate 1000
-
-	#Visual notification
+	#Play alarm tone
+	window.alarmTone = new Media("../www/audio/alarm_loop.wav")
+	window.alarmTone.play()
 	navigator.notification.alert \
-		"Wake up, Sheeple",
-		toggleAlarm(),
+		"It's time to wake up, participant",
+		toggleAlarm,
 		"Lucid",
-		"Dismiss"
+		"OK"
+
+alarmDismiss = ->
+	console.log "Alarm dismissed"
 
 ###
 Audio player

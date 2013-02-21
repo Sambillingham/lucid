@@ -14,6 +14,7 @@ public class GameController : MonoBehaviour {
 	void Start () {
 		challenges = new int[3] {0,0,0};
 		keyCard = GameObject.Find("Keycard");
+		Screen.showCursor = false;
 	}
 	
 	// Update is called once per frame

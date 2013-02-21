@@ -15,6 +15,7 @@ public class TitleScreenBehaviour : MonoBehaviour {
 		Debug.Log(myIP);
 		myStyle = new GUIStyle();
 		myStyle.normal.textColor = Color.grey;
+		Screen.showCursor = false;
 	}
 	
 	void OnGUI() {

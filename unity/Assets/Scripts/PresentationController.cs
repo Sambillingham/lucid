@@ -12,6 +12,7 @@ public class PresentationController : MonoBehaviour {
 		pIndex = 1;
 		ApplyTexture();
 		Debug.Log("Presentation GO!");
+		Screen.showCursor = false;
 	}
 	
 	// Update is called once per frame

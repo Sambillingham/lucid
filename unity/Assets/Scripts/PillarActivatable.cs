@@ -19,9 +19,7 @@ public class PillarActivatable : MonoBehaviour {
 		if (!activated) {
 			float dist = Vector3.Distance(transform.position, playerRef.position);
 			Debug.DrawLine(transform.position, playerRef.position, Color.red);
-			// Debug.Log("Distance to " + identifier + ": " + dist);
-			// Add a delay after which an item gets fully activated
-			// or remove locking for re-activatability :3
+
 			if (dist <= minDistance) {
 				if (controller) {
 					controller.SendMessage("Activated", identifier);

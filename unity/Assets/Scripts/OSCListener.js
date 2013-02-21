@@ -73,6 +73,6 @@ private function PassOnHeadOrientation (dir:Vector3) : void
 
 private function updateBrain (oscMessage : OscMessage) : void {
 	Debug.Log("Mindwave readings: " + oscMessage.Values[0]);
-	noiseEffect.grainIntensityMax = oscMessage.Values[0] / 2.0;
+	noiseEffect.grainIntensityMax = oscMessage.Values[0] * 0.5;
 }
 

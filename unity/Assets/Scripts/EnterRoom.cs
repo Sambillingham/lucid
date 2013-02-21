@@ -15,6 +15,6 @@ public class EnterRoom : MonoBehaviour {
 	void Update () {
 		Color cC = RenderSettings.ambientLight;
 		if (cC != aC)
-			RenderSettings.ambientLight = Color.Lerp(cC, aC, 0.01f);
+			RenderSettings.ambientLight = Color.Lerp(cC, aC, 0.1f);
 	}
 }

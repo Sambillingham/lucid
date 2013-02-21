@@ -1,5 +1,6 @@
 public var motor : CharacterController;
 public var sight : GameObject;
+public var step  : AudioSource;
 private var sightTo : Vector3;
 private var rotateBy : float = 0f;
 public var walkSpeed : float = 10f;
@@ -52,4 +53,10 @@ public function AdjustPlayerRotation (amount:float) :void {
 public function AdjustSight (rotationVector:Vector3) :void {
 	//sightTo = Quaternion.Euler(rotationVector);
 	sightTo = new Vector3(-50.0 + rotationVector.x, rotationVector.y * 100.0, rotationVector.z);
+}
+
+private function PlayFootSteps() {
+	if (!step.isPlaying) {
+		step.Play();
+	}
 }

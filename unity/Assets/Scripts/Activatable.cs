@@ -5,7 +5,7 @@ public class Activatable : MonoBehaviour {
 
 	public string identifier;
 	public float minDistance = 10.0f;
-	private bool activated;
+	public bool activated;
 	public GameObject controller;
 	private Transform playerRef;
 
@@ -27,7 +27,7 @@ public class Activatable : MonoBehaviour {
 					controller.SendMessage("Activated", identifier);
 					activated = true;
 					MonoBehaviour rm = gameObject.GetComponent("RotateMe") as MonoBehaviour;
-					rm.enabled = false;
+					rm.enabled = true;
 				}
 			}
 		}

@@ -25,6 +25,8 @@ public class TitleScreenBehaviour : MonoBehaviour {
 	void Update () {
 		if (Input.GetKeyUp("space"))
 			InitGame();
+		if (Input.GetKeyUp(KeyCode.Tab))
+			Application.LoadLevel("DemoVideo");
 
 		if (transform.position.z > -3.2f && transform.position.z < 0.6f)
 			transform.Translate(0,0,direction, Space.World);

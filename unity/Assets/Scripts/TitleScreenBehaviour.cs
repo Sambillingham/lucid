@@ -3,40 +3,35 @@ using System.Collections;
 
 public class TitleScreenBehaviour : MonoBehaviour {
 
-	public int   attemptNo;
-	public int   currentRoom;
-	public int[] roomSequence;
+	float direction;
+	string myIP;
+	GUIStyle myStyle;
 
 	// Use this for initialization
 	void Start () {
-		attemptNo = PlayerPrefs.GetInt("Runs");
-		roomSequence = new int[9] {1,2,3,4,5,6,7,8,9};
-		Debug.Log("Welcome back, Traveller.");
+		direction = -0.01f;
+		//transform.Translate(0,0,-1.2f, Space.World);
+		myIP = Network.player.ipAddress;
+		Debug.Log(myIP);
+		myStyle = new GUIStyle();
+		myStyle.normal.textColor = Color.grey;
+		Screen.showCursor = false;
 	}
 	
+	void OnGUI() {
+        GUI.Label(new Rect(Screen.width / 2 - 50, Screen.height - 100, 100, 20), myIP, myStyle);
+    }
+
 	// Update is called once per frame
 	void Update () {
-	
-	}
+		if (Input.GetKeyUp("space"))
+			Application.LoadLevel("Presentation");
 
-	void OnGUI () {
-		if(GUI.Button(new Rect((Screen.width / 2) - 50, Screen.height - 70,100,20), "Enter Dream")) {
-			attemptNo++;
-			PlayerPrefs.SetInt("Runs", attemptNo);
-			Debug.Log("This is attempt #" + attemptNo);
-			GoToNextLevel(roomSequence[0]);
-		}
-	}
-
-	void GoToNextLevel (int id) {
-		Debug.Log("Loading level: " + id);
-		currentRoom++;
-		// store currentRoom and roomSequence somewhere?
-		Application.LoadLevel(currentRoom);
-	}
-
-	int GetNextLevelID () {
-		return roomSequence[currentRoom + 1];
+		if (transform.position.z > -3.2f && transform.position.z < 0.6f)
+			transform.Translate(0,0,direction, Space.World);
+		else 
+			direction *= -1f;
+			transform.Translate(0,0,direction * 2, Space.World);
 	}
 
 }

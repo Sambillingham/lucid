@@ -1,0 +1,139 @@
+fileFormatVersion: 2
+guid: 980dd65443bcb42c1a1e363a25e704f1
+ModelImporter:
+  serializedVersion: 15
+  fileIDToRecycleName:
+    100000: Bulb
+    100002: Bulb_001
+    100004: Bulb_002
+    100006: Bulb_003
+    100008: Bulb_004
+    100010: Bulb_005
+    100012: Bulb_006
+    100014: Card_Reader
+    100016: Card_Reader_001
+    100018: Desk
+    100020: Door
+    100022: Door_001
+    100024: Lampshade
+    100026: Lobby
+    100028: //RootNode
+    100030: Mini_Lampshades
+    100032: Pillars
+    400000: Bulb
+    400002: Bulb_001
+    400004: Bulb_002
+    400006: Bulb_003
+    400008: Bulb_004
+    400010: Bulb_005
+    400012: Bulb_006
+    400014: Card_Reader
+    400016: Card_Reader_001
+    400018: Desk
+    400020: Door
+    400022: Door_001
+    400024: Lampshade
+    400026: Lobby
+    400028: //RootNode
+    400030: Mini_Lampshades
+    400032: Pillars
+    2300000: Bulb
+    2300002: Bulb_001
+    2300004: Bulb_002
+    2300006: Bulb_003
+    2300008: Bulb_004
+    2300010: Bulb_005
+    2300012: Bulb_006
+    2300014: Card_Reader
+    2300016: Card_Reader_001
+    2300018: Desk
+    2300020: Door
+    2300022: Door_001
+    2300024: Lampshade
+    2300026: Lobby
+    2300028: Mini_Lampshades
+    2300030: Pillars
+    3300000: Bulb
+    3300002: Bulb_001
+    3300004: Bulb_002
+    3300006: Bulb_003
+    3300008: Bulb_004
+    3300010: Bulb_005
+    3300012: Bulb_006
+    3300014: Card_Reader
+    3300016: Card_Reader_001
+    3300018: Desk
+    3300020: Door
+    3300022: Door_001
+    3300024: Lampshade
+    3300026: Lobby
+    3300028: Mini_Lampshades
+    3300030: Pillars
+    4300000: Door_001
+    4300002: Card_Reader_001
+    4300004: Mini_Lampshades
+    4300006: Bulb_006
+    4300008: Bulb_005
+    4300010: Bulb_004
+    4300012: Bulb_003
+    4300014: Bulb_002
+    4300016: Bulb_001
+    4300018: Card_Reader
+    4300020: Door
+    4300022: Lampshade
+    4300024: Bulb
+    4300026: Desk
+    4300028: Pillars
+    4300030: Lobby
+    7400000: Default Take
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 0
+    splitTangentsAcrossUV: 1
+    normalImportMode: 1
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    handles: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  additionalBone: 1
+  animationType: 2
+  userData: 

@@ -11,6 +11,10 @@ private var updatingFeet  : boolean;
 private var updatingHead  : boolean;
 public  var multiplier    : int = 10;
 
+public var mentalValue : float = 0.2;
+public var domeCam : GameObject;
+private var noiseEffect : NoiseEffect;
+
 public function Start ()
 {	
 	var udp : UDPPacketIO = GetComponent("UDPPacketIO");
@@ -20,6 +24,10 @@ public function Start ()
 			
 	oscHandler.SetAddressHandler("/move", updateFeet);
 	oscHandler.SetAddressHandler("/look", updateHead);
+	oscHandler.SetAddressHandler("/mindwave", updateBrain);
+
+	noiseEffect = domeCam.GetComponent(NoiseEffect);
+
 }
 
 function Update () {	
@@ -35,9 +43,9 @@ function Update () {
 
 public function updateFeet (oscMessage : OscMessage) : void
 {	
-	Debug.Log("ROTATION: " + oscMessage.Values[0] + ", VERTICAL: " + oscMessage.Values[1]);
+	//Debug.Log("ROTATION: " + oscMessage.Values[0] + ", VERTICAL: " + oscMessage.Values[1]);
 	rotation = oscMessage.Values[0];// / (multiplier);
-	var vertical:int = oscMessage.Values[1] * -multiplier;
+	var vertical:int = oscMessage.Values[1] * multiplier;
 	direction = new Vector3(0, 0, vertical);
 	updatingFeet = updatingHead = true;
 } 
@@ -50,10 +58,10 @@ private function PassOnMovement (dir:Vector3, rot:int) : void
 
 public function updateHead (oscMessage : OscMessage) : void
 {	
-	Debug.Log("Z: " + oscMessage.Values[0] + ", X: " + oscMessage.Values[1] + ", Y: " + oscMessage.Values[2]);
-	var z:float = -oscMessage.Values[0];
-	var x:float = -oscMessage.Values[1];
-	var y:float = -(oscMessage.Values[2]);
+	Debug.Log("Y: " + oscMessage.Values[0] + ", Z: " + oscMessage.Values[1] + ", X: " + oscMessage.Values[2]);
+	var z:float = -oscMessage.Values[1];
+	var y:float = oscMessage.Values[0];
+	var x:float = -(oscMessage.Values[2]);
 	lookAt = new Vector3(x,y,z);
 	updatingHead = true;
 } 
@@ -61,5 +69,10 @@ public function updateHead (oscMessage : OscMessage) : void
 private function PassOnHeadOrientation (dir:Vector3) : void 
 {
 	gameObject.SendMessage("AdjustSight", lookAt);
+}
+
+private function updateBrain (oscMessage : OscMessage) : void {
+	Debug.Log("Mindwave readings: " + oscMessage.Values[0]);
+	noiseEffect.grainIntensityMax = oscMessage.Values[0] * 0.5;
 }
 

@@ -10,11 +10,14 @@ public class DemoVideo : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyUp("space")) {
-			MovieTexture tex = renderer.material.mainTexture as MovieTexture;
-			tex.Play();
-			audio.Play();
-			Debug.Log("Playing.." + tex.isPlaying);
-		}
+
 	}
+
+	public void Go() {
+		MovieTexture tex = renderer.material.mainTexture as MovieTexture;
+		tex.Play();
+		audio.Play();
+		Debug.Log("Playing.." + tex.isPlaying);
+	}
+
 }

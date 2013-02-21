@@ -22,7 +22,11 @@ Movement is via holding the phone as it acts like a controller, Tilting forward 
 
 The ability to look around is slightly different and involves an iPhone attached to the MindWave sensor situated on a subjects head. The act of attaching an iPhone to a subject head may seem ominous or unnecessary, however it adds an interesting element of natural control. The iPhone controls where the character within Unity is currently looking, there is such an extreme field of view within the IVT that this becomes a subtle movement. While naturally looking at different aspects in the environment the centre position slightly changes in reaction to the subject moving their head.
 
+<<<<<<< HEAD
 ## Cogs in the machine
+=======
+## Pressing the controller button
+>>>>>>> d395e721afc452bf38fb9064ab8922ed559c796f
 
 To achieve the interaction between the mobile accelerometer for our controller and the experiment created within Unity 3D we used a number of real-time web technologies. Using Node.js, Socket.io and Node-OSC we were able to create seamless interaction and enhance our project with interaction devices of our choosing. All of the code behind our project is publicly available in our Github repo, [here](https://github.com/Sambillingham/lucid).
  

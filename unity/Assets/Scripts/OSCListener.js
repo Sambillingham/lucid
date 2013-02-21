@@ -11,7 +11,9 @@ private var updatingFeet  : boolean;
 private var updatingHead  : boolean;
 public  var multiplier    : int = 10;
 
+public var mentalValue : float = 0.2;
 public var domeCam : GameObject;
+private var noiseEffect : NoiseEffect;
 
 public function Start ()
 {	
@@ -23,6 +25,9 @@ public function Start ()
 	oscHandler.SetAddressHandler("/move", updateFeet);
 	oscHandler.SetAddressHandler("/look", updateHead);
 	oscHandler.SetAddressHandler("/mindwave", updateBrain);
+
+	noiseEffect = domeCam.GetComponent(NoiseEffect);
+
 }
 
 function Update () {	
@@ -68,7 +73,6 @@ private function PassOnHeadOrientation (dir:Vector3) : void
 
 private function updateBrain (oscMessage : OscMessage) : void {
 	Debug.Log("Mindwave readings: " + oscMessage.Values[0]);
-	domeCam.noiseEffect.grainIntensityMax = oscMessage.Values[0];
-	domeCam.noiseEffect.scratchIntensityMax = oscMessage.Values[0];
+	noiseEffect.grainIntensityMax = oscMessage.Values[0] / 2.0;
 }
 

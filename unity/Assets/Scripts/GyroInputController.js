@@ -54,9 +54,3 @@ public function AdjustSight (rotationVector:Vector3) :void {
 	//sightTo = Quaternion.Euler(rotationVector);
 	sightTo = new Vector3(-50.0 + rotationVector.x, rotationVector.y * 100.0, rotationVector.z);
 }
-
-private function PlayFootSteps() {
-	if (!step.isPlaying) {
-		step.Play();
-	}
-}

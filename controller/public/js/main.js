@@ -1,6 +1,6 @@
 $(function() {
 
-    var socket = io.connect('http://169.254.14.31:8080');
+    var socket = io.connect('http://192.168.0.20:8080');
 
             var whoAreYou = { move: false, look: false },
                 accellValues = { x: 0, y: 0, d: 0 };
@@ -15,13 +15,13 @@ $(function() {
 
                         if ( who.move === true && who.look === false ) {
 
-                                $('#move').html('Move');
+                                $('#moveTitle').html('CONTROLLER ACTIVATED');
                                 
                         }
 
                         if ( who.look === true && who.move === false)  {
 
-                                $('#look').html('Looking');
+                                $('#looktitle').html('CONTROLLER ACTIVATED');
                                 
                         }
 

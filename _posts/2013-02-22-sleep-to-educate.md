@@ -4,7 +4,7 @@ layout: post
 author: "Luke"
 ---
 
-##Hypnopaedua
+##Hypnopaedia
 
 Well, wouldn't  it be good if you could just fall asleep and wake up knowing fluent French, or Spanish? Hypnopaedia is just that, the ability to educate the mind while sleeping. Looking at authors of science fiction such as Aldous Huxley you can see the 'technofuture utopia' that we'd all be wondering if one day we ended up in with the ability to educate yourself while you sleep. In the book a Brave New World the ability to educate people's minds while they sleep is used to condition people into staying within their designated part of society. The main antagonist ends up hanging himself, possibly a sign that maybe this shouldn't be the way forward with this method of education. The novel, A Clockwork Orange, also sees sleep-learning techniques used upon the main character, however it is to no avail. 
 

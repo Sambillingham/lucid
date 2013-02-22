@@ -1,0 +1,67 @@
+/* # Reset & Basics
+================================================== */
+
+@import 'reset';
+
+/* # Magic
+================================================== */
+
+@import 'magic/mess';
+@import 'magic/color';
+@import 'magic/fonts';
+@import 'magic/mixins';
+@import 'magic/static';
+
+/* # Sensibilities
+================================================== */
+
+$site-width: 1280px;
+
+* { @include prefixer(box-sizing, border-box, webkit moz o spec); }
+
+.wrap {
+	max-width: $site-width;
+	margin: 0 auto;
+}
+
+a {
+	text-decoration: none;
+	color: $link;
+}
+
+/* # Primary Styles
+================================================== */
+
+@import 'header';
+
+html {
+	border-top: 5px solid $dark-highlight;
+}
+
+.main {
+	text-align: center;
+}
+
+@import 'footer';
+
+/* # Single article styles
+================================================== */
+
+@import 'article';
+
+/* # Media Queries
+================================================== */
+
+@media only screen and (max-width: 800px) {
+
+	.post {
+
+		.words {
+
+			width: 90%;
+
+		}
+
+	}
+
+}

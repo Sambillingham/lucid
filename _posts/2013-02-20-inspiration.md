@@ -2,7 +2,6 @@
 title: "The Challenge"
 layout: post
 author: "Flo"
-
 ---
 
 Prior to its current development the second half of our experiment, *the challenge*, underwent many heartbreaking iterations. The revision closest to the final concept was essentially the sum of our individual pursuits:
@@ -41,11 +40,13 @@ The models turned out fine, yet it would take a little more effort to make every
 
 As mentioned earlier, we settled on three puzzle rooms, each testing for different stimulae the player would have received before playing the game: a simple choice out of three options, a reconstruction of a story through objects depicting events or turning points and a re-creation of a musical track with the help of the given instruments. 
 
-Originally we wanted the iPhone responsible for moving the player around inside a little ball to make it feel more natural, so we didn't consider using the phones screen as an input mechanism until late. This meant we came up with ways of interacting with the environment without buttons instead. Easier said than done, yet with a little inspiration from [kairo](http://kairo.lockeddoorpuzzle.com), it certainly didn't seem all that impossible. For the first two challenges the player would simple go down a corridor and approach an object to activate it, only for the musical challenge we added some pressure pads on the floor to make it less fiddly. Well it wasn't ideal, but playable and I would also like to apologise for my inconsistent performance during the recording of those sound clips :>
+Originally we wanted the iPhone - the one responsible for moving the player around - inside a little ball to make it feel more natural, so we didn't consider using the phone's screen as an input mechanism until late. This meant we came up with ways of interacting with the environment without buttons instead. Easier said than done, yet with a little inspiration from [kairo](http://kairo.lockeddoorpuzzle.com), it certainly didn't seem all that impossible. 
 
-For the unlikely event of the participant getting all the answers right, he/she would receive a keycard that would allow him/her to explore other parts of the starting area. We didn't feel the need to punish the player for getting things wrong, however we made sure that there would be enough audible feedback to not lose the player along the way.
+For the first two challenges the player would simple go down a corridor and approach an object to activate it, only for the musical challenge we added some pressure pads on the floor to make it less fiddly. Well it wasn't ideal, but playable and I would also like to apologise for my inconsistent performance during the recording of those sound clips :>
 
-We felt that there had been scope for more rooms, but in regards to presentation time and player satisfaction we stopped at three. In the end I was glad that Luke offered to help out with the game logic - despite no prior knowledge of C# - as the creation and the sorting out of assets could have easily been a one-man job on its own. I can finally understand how there are people across several industries who "just" do lighting..
+For the unlikely event of the participant getting all the answers right, he/she would receive a keycard that would allow him/her to explore other parts of the starting area. We didn't feel the need to punish the player for getting things wrong, however we made sure that there would be enough audible feedback to not loose the player along the way.
+
+We felt that there had been scope for more rooms, but in regards to presentation time and player satisfaction we stopped at three. In the end I was glad that Luke offered to help out with the game logic here and there - despite no prior knowledge of C# - as the creation and the sorting out of assets could have easily been a one-man job on its own. I can finally understand how there are people across several industries who "just" do lighting..
 
 ## Let the polygons speak for themselves
 
